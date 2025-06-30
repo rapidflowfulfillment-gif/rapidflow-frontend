@@ -2,7 +2,7 @@ import { Truck, DollarSign, Package } from "lucide-react";
 
 export default function Features() {
   return (
-    <section className="bg-gray-50 py-16 px-6">
+    <section className="bg-[#F1F1F3] py-16 px-6">
       <div className="max-w-6xl mx-auto">
         {/* Section Heading */}
         <h2 className="text-2xl md:text-3xl font-medium text-gray-600 text-center mb-12">

@@ -63,14 +63,19 @@ export default function HexpropLanding() {
             </div>
           </div>
         </div>
+        {/* Contact Modal */}
+        <ContactModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        />
       </section>
 
       {/* Features Section */}
-      <section className="bg-white py-16 px-6">
+      <section className="max-w-6xl mx-auto bg-white py-16 px-6 shadow-lg rounded-lg -mt-14">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Quick turnaround */}
-            <div className="text-center">
+            <div className="">
               <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                 <RefreshCw className="w-8 h-8 text-black" />
               </div>
@@ -84,7 +89,7 @@ export default function HexpropLanding() {
             </div>
 
             {/* Bulk order handling */}
-            <div className="text-center">
+            <div className="">
               <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                 <BarChart3 className="w-8 h-8 text-black" />
               </div>
@@ -98,7 +103,7 @@ export default function HexpropLanding() {
             </div>
 
             {/* Competitive pricing */}
-            <div className="text-center">
+            <div className="">
               <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                 <Tag className="w-8 h-8 text-black" />
               </div>
@@ -111,7 +116,7 @@ export default function HexpropLanding() {
             </div>
 
             {/* Efficient operations */}
-            <div className="text-center">
+            <div className="">
               <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                 <Settings className="w-8 h-8 text-black" />
               </div>
@@ -125,12 +130,6 @@ export default function HexpropLanding() {
             </div>
           </div>
         </div>
-
-        {/* Contact Modal */}
-        <ContactModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-        />
       </section>
     </div>
   );
