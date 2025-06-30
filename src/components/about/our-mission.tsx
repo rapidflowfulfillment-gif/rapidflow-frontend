@@ -1,6 +1,6 @@
 export default function OurMissionSection() {
   return (
-    <section className="bg-[#F1F1F3] py-16 px-6">
+    <section id="our-mission" className="bg-[#F1F1F3] py-16 px-6">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-zince-600 mb-8">
           Our mission
