@@ -76,8 +76,11 @@ export default function Navbar() {
                       align="start"
                       className="w-[290px] animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 duration-200"
                     >
-                      <DropdownMenuItem className="p-3 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors duration-150">
-                        <div className="flex items-start space-x-3">
+                      <DropdownMenuItem asChild>
+                        <a
+                          href="#our-process"
+                          className="p-3 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors duration-150 flex items-start space-x-3"
+                        >
                           <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
                             <Settings className="w-4 h-4 text-gray-600" />
                           </div>
@@ -89,10 +92,14 @@ export default function Navbar() {
                               What goes on behind the scenes
                             </div>
                           </div>
-                        </div>
+                        </a>
                       </DropdownMenuItem>
-                      <DropdownMenuItem className="p-3 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors duration-150">
-                        <div className="flex items-start space-x-3">
+
+                      <DropdownMenuItem asChild>
+                        <a
+                          href="#our-mission"
+                          className="p-3 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors duration-150 flex items-start space-x-3"
+                        >
                           <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
                             <Target className="w-4 h-4 text-gray-600" />
                           </div>
@@ -104,10 +111,14 @@ export default function Navbar() {
                               What we strive for
                             </div>
                           </div>
-                        </div>
+                        </a>
                       </DropdownMenuItem>
-                      <DropdownMenuItem className="p-3 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors duration-150">
-                        <div className="flex items-start space-x-3">
+
+                      <DropdownMenuItem asChild>
+                        <a
+                          href="#meet-our-team"
+                          className="p-3 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors duration-150 flex items-start space-x-3"
+                        >
                           <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
                             <Brain className="w-4 h-4 text-gray-600" />
                           </div>
@@ -119,7 +130,7 @@ export default function Navbar() {
                               Who we are
                             </div>
                           </div>
-                        </div>
+                        </a>
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
@@ -183,7 +194,9 @@ export default function Navbar() {
                   onOpenChange={setIsMobileDropdownOpen}
                 >
                   <DropdownMenuTrigger className="flex items-center justify-between text-gray-700 hover:text-gray-900 font-medium transition-colors w-full text-left">
-                    <span>About us</span>
+                    <Link href="about">
+                      <span>About us</span>
+                    </Link>
                     <ChevronDown
                       className={`w-4 h-4 transition-transform duration-200 ${
                         isMobileDropdownOpen ? "rotate-180" : "rotate-0"
@@ -194,18 +207,32 @@ export default function Navbar() {
                     align="start"
                     className="w-48 animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 duration-200"
                   >
-                    <DropdownMenuItem className="transition-colors duration-150">
-                      <a href="#" className="w-full">
+                    <DropdownMenuItem asChild>
+                      <a
+                        href="#our-process"
+                        className="w-full transition-colors duration-150 block px-2 py-1"
+                        onClick={() => setIsMobileMenuOpen(false)} // Optional: close mobile menu
+                      >
                         The process
                       </a>
                     </DropdownMenuItem>
-                    <DropdownMenuItem className="transition-colors duration-150">
-                      <a href="#" className="w-full">
+
+                    <DropdownMenuItem asChild>
+                      <a
+                        href="#our-mission"
+                        className="w-full transition-colors duration-150 block px-2 py-1"
+                        onClick={() => setIsMobileMenuOpen(false)} // Optional: close mobile menu
+                      >
                         Our mission
                       </a>
                     </DropdownMenuItem>
-                    <DropdownMenuItem className="transition-colors duration-150">
-                      <a href="#" className="w-full">
+
+                    <DropdownMenuItem asChild>
+                      <a
+                        href="#meet-our-team"
+                        className="w-full transition-colors duration-150 block px-2 py-1"
+                        onClick={() => setIsMobileMenuOpen(false)} // optional: close mobile menu after click
+                      >
                         Meet our team
                       </a>
                     </DropdownMenuItem>
