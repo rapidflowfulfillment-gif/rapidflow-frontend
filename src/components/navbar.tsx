@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
 import logo from "@/assets/logo.png";
-// import Link from "next/link"
+import Link from "next/link";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -45,12 +45,12 @@ export default function Navbar() {
 
               {/* Desktop Navigation */}
               <div className="hidden md:flex items-center space-x-8 ml-8">
-                <a
-                  href="#"
+                <Link
+                  href="/"
                   className="text-gray-700 hover:text-gray-900 font-bold transition-colors"
                 >
                   Home
-                </a>
+                </Link>
 
                 {/* Desktop Dropdown with Hover */}
                 <div
@@ -63,7 +63,9 @@ export default function Navbar() {
                     onOpenChange={setIsDesktopDropdownOpen}
                   >
                     <DropdownMenuTrigger className="flex items-center space-x-1 text-gray-700 hover:text-gray-900 font-bold transition-colors">
-                      <span>About us</span>
+                      <Link href="/about">
+                        <span>About us</span>
+                      </Link>
                       <ChevronDown
                         className={`w-4 h-4 transition-transform duration-200 ${
                           isDesktopDropdownOpen ? "rotate-180" : "rotate-0"
@@ -123,18 +125,18 @@ export default function Navbar() {
                   </DropdownMenu>
                 </div>
 
-                <a
-                  href="#"
+                <Link
+                  href="contact"
                   className="text-gray-700 hover:text-gray-900 font-bold transition-colors"
                 >
                   Contact
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  href="faq"
                   className="text-gray-700 hover:text-gray-900 font-bold transition-colors"
                 >
                   FAQ
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -168,12 +170,12 @@ export default function Navbar() {
           {isMobileMenuOpen && (
             <div className="md:hidden mt-4 pt-4 border-t border-gray-200">
               <div className="flex flex-col space-y-4">
-                <a
-                  href="#"
+                <Link
+                  href="/"
                   className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
                 >
                   Home
-                </a>
+                </Link>
 
                 {/* Mobile Dropdown (Click-based) */}
                 <DropdownMenu
@@ -210,18 +212,18 @@ export default function Navbar() {
                   </DropdownMenuContent>
                 </DropdownMenu>
 
-                <a
-                  href="#"
+                <Link
+                  href="contact"
                   className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
                 >
                   Contact
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  href="faq"
                   className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
                 >
                   FAQ
-                </a>
+                </Link>
                 <div className="pt-4 border-t border-gray-200 space-y-3">
                   <a
                     href="#"
@@ -238,6 +240,6 @@ export default function Navbar() {
           )}
         </nav>
       </div>
-    </div> 
+    </div>
   );
 }
