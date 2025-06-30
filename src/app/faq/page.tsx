@@ -1,16 +1,16 @@
-import Contact from "@/components/contact/contact-page";
+import Faq from "@/components/faq-page";
 import Footer from "@/components/footer-section";
 import Navbar from "@/components/navbar";
 import React from "react";
 
-const ContactPage = () => {
+const FaqPage = () => {
   return (
     <div>
       <Navbar />
-      <Contact />
+      <Faq />
       <Footer />
     </div>
   );
 };
 
-export default ContactPage;
+export default FaqPage;
