@@ -1,6 +1,7 @@
 import AboutSection from "@/components/about/about-section";
 import OurMissionSection from "@/components/about/our-mission";
 import ProcessSection from "@/components/about/process-section";
+import MeetOurTeam from "@/components/about/team-section";
 import CtaSection from "@/components/cta-section";
 import Footer from "@/components/footer-section";
 import Navbar from "@/components/navbar";
@@ -13,6 +14,7 @@ const About = () => {
       <AboutSection />
       <ProcessSection />
       <OurMissionSection />
+      <MeetOurTeam />
       <CtaSection />
       <Footer />
     </div>
