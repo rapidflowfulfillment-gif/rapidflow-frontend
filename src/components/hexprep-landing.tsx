@@ -1,8 +1,13 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { RefreshCw, BarChart3, Tag, Settings } from "lucide-react";
+import { useState } from "react";
+import ContactModal from "./common/ContactModal";
 
 export default function HexpropLanding() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -49,7 +54,10 @@ export default function HexpropLanding() {
                 placeholder="Your work email"
                 className="bg-white text-gray-900 placeholder:text-gray-500 border-0 h-12"
               />
-              <Button className="bg-white hover:bg-gray-100 text-black hover:text-black h-12 px-6">
+              <Button
+                onClick={() => setIsModalOpen(true)}
+                className="bg-white hover:bg-gray-100 text-black hover:text-black h-12 px-6"
+              >
                 Get in touch
               </Button>
             </div>
@@ -117,6 +125,12 @@ export default function HexpropLanding() {
             </div>
           </div>
         </div>
+
+        {/* Contact Modal */}
+        <ContactModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        />
       </section>
     </div>
   );
