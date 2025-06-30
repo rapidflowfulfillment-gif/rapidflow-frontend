@@ -1,7 +1,7 @@
 export default function AboutSection() {
   return (
     <section className="bg-black py-16 px-6">
-      <div className="max-w-4xl mx-auto text-center">
+      <div className="max-w-4xl mx-auto text-center md:mt-20">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">
           About Us
         </h2>
