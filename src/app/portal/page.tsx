@@ -12,11 +12,9 @@ import {
   Filter,
 } from "lucide-react";
 
-interface ClientPortalProps {
-  onBackClick: () => void;
-}
 
-export default function ClientPortal({ onBackClick }: ClientPortalProps) {
+
+export default function ClientPortal() {
   const [selectedTicket, setSelectedTicket] = useState<number | null>(null);
   const [newMessage, setNewMessage] = useState("");
   const [showNewTicket, setShowNewTicket] = useState(false);
@@ -242,7 +240,6 @@ export default function ClientPortal({ onBackClick }: ClientPortalProps) {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <button
-                onClick={onBackClick}
                 className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors"
               >
                 <ArrowLeft className="w-4 h-4" />
