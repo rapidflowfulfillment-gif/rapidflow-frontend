@@ -1,4 +1,3 @@
-
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -16,8 +15,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Chat Application",
-  description: "Modern chat application interface",
+  title: "Matthew Application",
+  description: "Modern Matthew application interface",
 };
 
 export default function RootLayout({
@@ -28,8 +27,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} `}>
-          {children}
-          <Toaster position="top-right" reverseOrder={false} />
+        {children}
+        <Toaster position="top-right" reverseOrder={false} />
       </body>
     </html>
   );
