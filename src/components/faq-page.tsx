@@ -4,10 +4,13 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChevronDown, ChevronUp, Search, HelpCircle } from "lucide-react";
+import { Button } from "./ui/button";
+import ContactModal from "./common/ContactModal";
 
 export default function Faq() {
   const [searchTerm, setSearchTerm] = useState("");
   const [openItems, setOpenItems] = useState<number[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const faqData = [
     {
@@ -142,7 +145,7 @@ export default function Faq() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-black py-16 px-6">
+      <section className="bg-black py-36 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6">
             <HelpCircle className="w-8 h-8 text-black" />
@@ -273,14 +276,19 @@ export default function Faq() {
             >
               Contact Us
             </a>
-            <a
-              href="mailto:contact@hexprep.com"
+            <Button
+              onClick={() => setIsModalOpen(true)}
               className="border border-white text-white hover:bg-white hover:text-black font-semibold px-8 py-3 rounded-lg transition-colors"
             >
               Email Support
-            </a>
+            </Button>
           </div>
         </div>
+        {/* Contact Modal */}
+        <ContactModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        />
       </section>
     </div>
   );

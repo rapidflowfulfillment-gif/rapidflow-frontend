@@ -156,16 +156,19 @@ export default function Navbar() {
 
             {/* Right Side Buttons */}
             <div className="hidden md:flex items-center space-x-4">
-              <a
+              <Link
+                href="portal"
+                className="bg-gray-100 hover:bg-gray-300 text-gray-700 hover:text-gray-900 font-bold px-4 py-2 rounded transition-colors"
+              >
+                Client portal
+              </Link>
+              {/* <a
                 href="#"
                 className="bg-gray-100 hover:bg-gray-300 text-gray-700 hover:text-gray-900 font-bold px-4 py-2 rounded transition-colors"
               >
                 Client portal
-              </a>
-              <Button
-                onClick={() => setIsModalOpen(true)}
-                className="bg-gradient-to-r from-fuchsia-500 to-purple-600 hover:from-fuchsia-600 hover:to-purple-700 text-white font-medium px-6 py-2 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
-              >
+              </a> */}
+              <Button className="bg-gradient-to-r from-fuchsia-500 to-purple-600 hover:from-fuchsia-600 hover:to-purple-700 text-white font-medium px-6 py-2 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg">
                 Get in touch
               </Button>
             </div>
@@ -258,16 +261,19 @@ export default function Navbar() {
                   FAQ
                 </Link>
                 <div className="pt-4 border-t border-gray-200 space-y-3">
-                  <a
+                  <Link
+                    href="portal"
+                    className="block text-gray-700 hover:text-gray-900 font-medium transition-colors"
+                  >
+                    Client portal
+                  </Link>
+                  {/* <a
                     href="#"
                     className="block text-gray-700 hover:text-gray-900 font-medium transition-colors"
                   >
                     Client portal
-                  </a>
-                  <Button
-                    onClick={() => setIsModalOpen(true)}
-                    className="w-full bg-gradient-to-r from-fuchsia-500 to-purple-600 hover:from-fuchsia-600 hover:to-purple-700 text-white font-medium px-6 py-2 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
-                  >
+                  </a> */}
+                  <Button className="w-full bg-gradient-to-r from-fuchsia-500 to-purple-600 hover:from-fuchsia-600 hover:to-purple-700 text-white font-medium px-6 py-2 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg">
                     Get in touch
                   </Button>
                 </div>
