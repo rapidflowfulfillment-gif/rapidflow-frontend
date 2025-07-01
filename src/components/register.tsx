@@ -1,5 +1,8 @@
 "use client";
 
+import type React from "react";
+import { useState } from "react";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,8 +17,59 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle, Star, Clock, Shield } from "lucide-react";
 import Image from "next/image";
 import logo from "@/assets/logo.png";
+import Link from "next/link";
 
 export default function Register() {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    company: "",
+    website: "",
+    serviceType: "",
+    budget: "",
+  });
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Form Data:", formData);
+
+    // Check if all required fields are filled
+    const requiredFields = [
+      "firstName",
+      "lastName",
+      "email",
+      "phone",
+      "company",
+      "serviceType",
+      "budget",
+    ];
+    const missingFields = requiredFields.filter(
+      (field) => !formData[field as keyof typeof formData]
+    );
+
+    if (missingFields.length > 0) {
+      console.log("Missing required fields:", missingFields);
+      alert(
+        `Please fill in the following required fields: ${missingFields.join(
+          ", "
+        )}`
+      );
+      return;
+    }
+
+    console.log("All fields completed!");
+    alert("Form submitted successfully! Check console for details.");
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-red-900 to-black relative overflow-hidden">
       {/* Advanced Animated Background */}
@@ -171,10 +225,10 @@ export default function Register() {
       {/* Page Content */}
       <div className="max-w-7xl mx-auto px-4 py-16 relative z-10">
         {/* Logo */}
-        <div className="mb-16">
+        <div className="mb-16 text-center">
           <div className="items-center justify-center">
             <Image
-              className="w-[300px] h-[150px]  drop-shadow-2xl"
+              className="w-[300px] h-[150px] drop-shadow-2xl"
               src={logo}
               width={300}
               height={150}
@@ -290,252 +344,298 @@ export default function Register() {
                 </p>
               </CardHeader>
               <CardContent className="space-y-4 p-6">
-                <div className="grid grid-cols-2 gap-4">
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label
+                        htmlFor="firstName"
+                        className="text-sm font-medium text-white"
+                      >
+                        First name
+                      </Label>
+                      <Input
+                        id="firstName"
+                        placeholder="First name"
+                        value={formData.firstName}
+                        onChange={(e) =>
+                          handleInputChange("firstName", e.target.value)
+                        }
+                        required
+                        className="border-white/30 focus:border-red-400 focus:ring-red-400 bg-white/10 text-white placeholder:text-gray-300 backdrop-blur-sm"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label
+                        htmlFor="lastName"
+                        className="text-sm font-medium text-white"
+                      >
+                        Last Name
+                      </Label>
+                      <Input
+                        id="lastName"
+                        placeholder="Last Name"
+                        value={formData.lastName}
+                        onChange={(e) =>
+                          handleInputChange("lastName", e.target.value)
+                        }
+                        required
+                        className="border-white/30 focus:border-red-400 focus:ring-red-400 bg-white/10 text-white placeholder:text-gray-300 backdrop-blur-sm"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label
+                        htmlFor="email"
+                        className="text-sm font-medium text-white"
+                      >
+                        Email
+                      </Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder="Email"
+                        value={formData.email}
+                        onChange={(e) =>
+                          handleInputChange("email", e.target.value)
+                        }
+                        required
+                        className="border-white/30 focus:border-red-400 focus:ring-red-400 bg-white/10 text-white placeholder:text-gray-300 backdrop-blur-sm"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label
+                        htmlFor="phone"
+                        className="text-sm font-medium text-white"
+                      >
+                        Phone
+                      </Label>
+                      <Input
+                        id="phone"
+                        type="tel"
+                        placeholder="Phone"
+                        value={formData.phone}
+                        onChange={(e) =>
+                          handleInputChange("phone", e.target.value)
+                        }
+                        required
+                        className="border-white/30 focus:border-red-400 focus:ring-red-400 bg-white/10 text-white placeholder:text-gray-300 backdrop-blur-sm"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label
+                        htmlFor="company"
+                        className="text-sm font-medium text-white"
+                      >
+                        Company name
+                      </Label>
+                      <Input
+                        id="company"
+                        placeholder="Company name"
+                        value={formData.company}
+                        onChange={(e) =>
+                          handleInputChange("company", e.target.value)
+                        }
+                        required
+                        className="border-white/30 focus:border-red-400 focus:ring-red-400 bg-white/10 text-white placeholder:text-gray-300 backdrop-blur-sm"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label
+                        htmlFor="website"
+                        className="text-sm font-medium text-white"
+                      >
+                        Company website
+                      </Label>
+                      <Input
+                        id="website"
+                        placeholder="Company website"
+                        value={formData.website}
+                        onChange={(e) =>
+                          handleInputChange("website", e.target.value)
+                        }
+                        className="border-white/30 focus:border-red-400 focus:ring-red-400 bg-white/10 text-white placeholder:text-gray-300 backdrop-blur-sm"
+                      />
+                    </div>
+                  </div>
+
                   <div className="space-y-2">
                     <Label
-                      htmlFor="firstName"
+                      htmlFor="serviceType"
                       className="text-sm font-medium text-white"
                     >
-                      First name
+                      Service Type
                     </Label>
-                    <Input
-                      id="firstName"
-                      placeholder="First name"
-                      className="border-white/30 focus:border-red-400 focus:ring-red-400 bg-white/10 text-white placeholder:text-gray-300 backdrop-blur-sm"
-                    />
+                    <Select
+                      value={formData.serviceType}
+                      onValueChange={(value) =>
+                        handleInputChange("serviceType", value)
+                      }
+                      required
+                    >
+                      <SelectTrigger className="border-white/30 focus:border-red-400 focus:ring-red-400 bg-white/10 text-white backdrop-blur-sm">
+                        <SelectValue placeholder="Select service type" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-slate-800/95 border-white/30 backdrop-blur-xl">
+                        <SelectItem
+                          value="ecommerce-platform"
+                          className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
+                        >
+                          ECommerce Platform
+                        </SelectItem>
+                        <SelectItem
+                          value="web-design"
+                          className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
+                        >
+                          Web Design
+                        </SelectItem>
+                        <SelectItem
+                          value="amazon"
+                          className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
+                        >
+                          Amazon
+                        </SelectItem>
+                        <SelectItem
+                          value="bigcommerce"
+                          className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
+                        >
+                          BigCommerce
+                        </SelectItem>
+                        <SelectItem
+                          value="magento"
+                          className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
+                        >
+                          Magento
+                        </SelectItem>
+                        <SelectItem
+                          value="other"
+                          className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
+                        >
+                          None/Other
+                        </SelectItem>
+                        <SelectItem
+                          value="salesforce"
+                          className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
+                        >
+                          SalesForce
+                        </SelectItem>
+                        <SelectItem
+                          value="shopify"
+                          className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
+                        >
+                          Shopify
+                        </SelectItem>
+                        <SelectItem
+                          value="square"
+                          className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
+                        >
+                          Square
+                        </SelectItem>
+                        <SelectItem
+                          value="squarespace"
+                          className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
+                        >
+                          Squarespace
+                        </SelectItem>
+                        <SelectItem
+                          value="tiktok"
+                          className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
+                        >
+                          TikTok
+                        </SelectItem>
+                        <SelectItem
+                          value="walmart"
+                          className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
+                        >
+                          Walmart
+                        </SelectItem>
+                        <SelectItem
+                          value="wix"
+                          className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
+                        >
+                          Wix
+                        </SelectItem>
+                        <SelectItem
+                          value="woocommerce"
+                          className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
+                        >
+                          WooCommerce
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
+
                   <div className="space-y-2">
                     <Label
-                      htmlFor="lastName"
+                      htmlFor="budget"
                       className="text-sm font-medium text-white"
                     >
-                      Last Name
+                      Project Budget Range
                     </Label>
-                    <Input
-                      id="lastName"
-                      placeholder="Last Name"
-                      className="border-white/30 focus:border-red-400 focus:ring-red-400 bg-white/10 text-white placeholder:text-gray-300 backdrop-blur-sm"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label
-                      htmlFor="email"
-                      className="text-sm font-medium text-white"
+                    <Select
+                      value={formData.budget}
+                      onValueChange={(value) =>
+                        handleInputChange("budget", value)
+                      }
+                      required
                     >
-                      Email
-                    </Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="Email"
-                      className="border-white/30 focus:border-red-400 focus:ring-red-400 bg-white/10 text-white placeholder:text-gray-300 backdrop-blur-sm"
-                    />
+                      <SelectTrigger className="border-white/30 focus:border-red-400 focus:ring-red-400 bg-white/10 text-white backdrop-blur-sm">
+                        <SelectValue placeholder="Select budget range" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-slate-800/95 border-white/30 backdrop-blur-xl">
+                        <SelectItem
+                          value="500"
+                          className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
+                        >
+                          Monthly Order Volume (Min req - 500/mo)
+                        </SelectItem>
+                        <SelectItem
+                          value="500-1000"
+                          className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
+                        >
+                          500-1000
+                        </SelectItem>
+                        <SelectItem
+                          value="1001-5000"
+                          className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
+                        >
+                          1001-5000
+                        </SelectItem>
+                        <SelectItem
+                          value="5001-10k"
+                          className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
+                        >
+                          5001-10,000
+                        </SelectItem>
+                        <SelectItem
+                          value="10k+"
+                          className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
+                        >
+                          10,000+
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
-                  <div className="space-y-2">
-                    <Label
-                      htmlFor="phone"
-                      className="text-sm font-medium text-white"
+
+                  <Link href="/home">
+                    <Button
+                      type="submit"
+                      className="w-full bg-gradient-to-r from-black-500 to-black-600 hover:from-red-600 hover:to-red-700 text-white font-semibold py-4 rounded-xl transition-all mt-6 shadow-2xl hover:shadow-red-500/25 hover:scale-105 border border-red-400/50"
+                      size="lg"
                     >
-                      Phone
-                    </Label>
-                    <Input
-                      id="phone"
-                      type="tel"
-                      placeholder="Phone"
-                      className="border-white/30 focus:border-red-400 focus:ring-red-400 bg-white/10 text-white placeholder:text-gray-300 backdrop-blur-sm"
-                    />
+                      Send Quote Request
+                    </Button>
+                  </Link>
+
+                  <div className="flex items-center justify-center gap-2 text-sm text-gray-300 mt-4">
+                    <CheckCircle className="w-4 h-4 text-green-400" />
+                    <span>Free consultation included</span>
                   </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label
-                      htmlFor="company"
-                      className="text-sm font-medium text-white"
-                    >
-                      Company name
-                    </Label>
-                    <Input
-                      id="company"
-                      placeholder="Company name"
-                      className="border-white/30 focus:border-red-400 focus:ring-red-400 bg-white/10 text-white placeholder:text-gray-300 backdrop-blur-sm"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label
-                      htmlFor="website"
-                      className="text-sm font-medium text-white"
-                    >
-                      website
-                    </Label>
-                    <Input
-                      id="website"
-                      placeholder="Company website"
-                      className="border-white/30 focus:border-red-400 focus:ring-red-400 bg-white/10 text-white placeholder:text-gray-300 backdrop-blur-sm"
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label
-                    htmlFor="serviceType"
-                    className="text-sm font-medium text-white"
-                  >
-                    Service Type
-                  </Label>
-                  <Select>
-                    <SelectTrigger className="border-white/30 focus:border-red-400 focus:ring-red-400 bg-white/10 text-white backdrop-blur-sm">
-                      <SelectValue placeholder="Select service type" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-slate-800/95 border-white/30 backdrop-blur-xl">
-                      <SelectItem
-                        value="ecommerce-platform"
-                        className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
-                      >
-                        ECommerce Platform
-                      </SelectItem>
-                      <SelectItem
-                        value="web-design"
-                        className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
-                      >
-                        Web Design
-                      </SelectItem>
-                      <SelectItem
-                        value="amazon"
-                        className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
-                      >
-                        Amazon
-                      </SelectItem>
-                      <SelectItem
-                        value="bigcommerce"
-                        className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
-                      >
-                        BigCommerce
-                      </SelectItem>
-                      <SelectItem
-                        value="magento"
-                        className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
-                      >
-                        Magento
-                      </SelectItem>
-                      <SelectItem
-                        value="other"
-                        className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
-                      >
-                        None/Other
-                      </SelectItem>
-                      <SelectItem
-                        value="salesforce"
-                        className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
-                      >
-                        SalesForce
-                      </SelectItem>
-                      <SelectItem
-                        value="shopify"
-                        className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
-                      >
-                        Shopify
-                      </SelectItem>
-                      <SelectItem
-                        value="square"
-                        className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
-                      >
-                        Square
-                      </SelectItem>
-                      <SelectItem
-                        value="squarespace"
-                        className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
-                      >
-                        Squarespace
-                      </SelectItem>
-                      <SelectItem
-                        value="tiktok"
-                        className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
-                      >
-                        TikTok
-                      </SelectItem>
-                      <SelectItem
-                        value="walmart"
-                        className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
-                      >
-                        Walmart
-                      </SelectItem>
-                      <SelectItem
-                        value="wix"
-                        className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
-                      >
-                        Wix
-                      </SelectItem>
-                      <SelectItem
-                        value="woocommerce"
-                        className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
-                      >
-                        WooCommerce
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="space-y-2">
-                  <Label
-                    htmlFor="budget"
-                    className="text-sm font-medium text-white"
-                  >
-                    Project Budget Range
-                  </Label>
-                  <Select>
-                    <SelectTrigger className="border-white/30 focus:border-red-400 focus:ring-red-400 bg-white/10 text-white backdrop-blur-sm">
-                      <SelectValue placeholder="Select budget range" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-slate-800/95 border-white/30 backdrop-blur-xl">
-                      <SelectItem
-                        value="500"
-                        className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
-                      >
-                        Monthly Order Volume (Min req - 500/mo)
-                      </SelectItem>
-                      <SelectItem
-                        value="500-1000"
-                        className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
-                      >
-                        500-1000
-                      </SelectItem>
-                      <SelectItem
-                        value="1001-5000"
-                        className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
-                      >
-                        1001-5000
-                      </SelectItem>
-                      <SelectItem
-                        value="5001-10k"
-                        className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
-                      >
-                        5001-10,000
-                      </SelectItem>
-                      <SelectItem
-                        value="10k+"
-                        className="hover:bg-red-500/20 focus:bg-red-500/20 text-white"
-                      >
-                        10,000+
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <Button
-                  className="w-full bg-gradient-to-r from-black-500 to-black-600 hover:from-red-600 hover:to-red-700 text-white font-semibold py-4 rounded-xl transition-all mt-6 shadow-2xl hover:shadow-red-500/25 hover:scale-105 border border-red-400/50"
-                  size="lg"
-                >
-                  Send Quote Request
-                </Button>
-
-                <div className="flex items-center justify-center gap-2 text-sm text-gray-300 mt-4">
-                  <CheckCircle className="w-4 h-4 text-green-400" />
-                  <span>Free consultation included</span>
-                </div>
+                </form>
               </CardContent>
             </Card>
           </div>
