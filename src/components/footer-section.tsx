@@ -117,7 +117,7 @@ export default function Footer() {
             />
 
             <div className="flex items-center justify-center">
-              &copy; {new Date().getFullYear()} All rights reserved
+              &copy; {new Date().getFullYear()} Matthew
             </div>
           </div>
 
