@@ -22,8 +22,9 @@ export default function Footer() {
               height={40}
               alt="Logo"
             />
-            <span className="text-xl font-semibold text-gray-800">Rapid Flow
-Fulfillment</span>
+            <span className="text-xl font-semibold text-gray-800">
+              Rapid Flow Fulfillment
+            </span>
           </div>
         </div>
 
@@ -49,12 +50,20 @@ Fulfillment</span>
                   Our mission
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   href="/about#meet-our-team"
                   className="hover:text-red-500 transition-colors"
                 >
                   Meet the team
+                </Link>
+              </li> */}
+              <li>
+                <Link
+                  href="/about#our-vision"
+                  className="hover:text-red-500 transition-colors"
+                >
+                  Our vision
                 </Link>
               </li>
             </ul>
@@ -90,7 +99,7 @@ Fulfillment</span>
                   href="mailto:contact@hexprep.com"
                   className="text-red-500 hover:text-red-400 transition-colors"
                 >
-                  hexprep@gmail.com
+                  Support@rapidflowfulfillment.com
                 </a>
               </li>
               <li>
@@ -98,7 +107,7 @@ Fulfillment</span>
                   href="tel:+15033131528"
                   className="text-red-500 hover:text-red-400 transition-colors"
                 >
-                  (503) 313-1528
+                  281-883-6053
                 </a>
               </li>
             </ul>
@@ -118,7 +127,7 @@ Fulfillment</span>
             />
 
             <div className="flex items-center justify-center">
-              &copy; {new Date().getFullYear()} Rapid Flow Fulfillment
+              Copyright &copy; {new Date().getFullYear()} Rapid Flow Fulfillment
             </div>
           </div>
 

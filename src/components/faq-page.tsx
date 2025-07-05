@@ -69,55 +69,6 @@ export default function Faq() {
       answer:
         "You can ship your products directly to our warehouse addresses. We'll provide you with specific shipping instructions and our warehouse address once you become a client. We accept shipments via all major carriers.",
     },
-    {
-      id: 9,
-      category: "Shipping",
-      question: "Do you provide tracking information?",
-      answer:
-        "Yes, we provide full tracking information for all shipments. You'll receive notifications when we receive your inventory, when prep work is completed, and when items are shipped to Amazon with tracking numbers.",
-    },
-    {
-      id: 10,
-      category: "Shipping",
-      question: "Can you handle LTL and FTL shipments?",
-      answer:
-        "We have loading docks available at both locations to handle LTL (Less Than Truckload) and FTL (Full Truckload) shipments efficiently.",
-    },
-    {
-      id: 11,
-      category: "Account",
-      question: "How do I get started with HexPrep?",
-      answer:
-        "Getting started is easy! Contact us through our website, phone, or email. We'll discuss your needs, provide pricing, and set up your account. Once approved, we'll provide warehouse addresses and shipping instructions.",
-    },
-    {
-      id: 12,
-      category: "Account",
-      question: "Do you require a minimum order volume?",
-      answer:
-        "We work with businesses of all sizes, from small sellers to large enterprises. While we don't have a strict minimum, our services are most cost-effective for regular shipments. Contact us to discuss your specific situation.",
-    },
-    {
-      id: 13,
-      category: "Account",
-      question: "How do I access the client portal?",
-      answer:
-        "Once you become a client, we'll provide you with login credentials for our client portal where you can track shipments, view invoices, and manage your account. The portal is accessible 24/7 from our website.",
-    },
-    {
-      id: 14,
-      category: "Support",
-      question: "What are your business hours?",
-      answer:
-        "Our business hours are Monday-Friday 8:00 AM - 6:00 PM PST, and Saturday 9:00 AM - 4:00 PM PST. We're closed on Sundays. However, you can always reach us via email, and we'll respond during business hours.",
-    },
-    {
-      id: 15,
-      category: "Support",
-      question: "How can I contact customer support?",
-      answer:
-        "You can reach our support team via email at contact@hexprep.com, phone at (503) 313-1528, or through our website contact form. We typically respond to emails within 24 hours during business days.",
-    },
   ];
 
   const categories = [

@@ -56,7 +56,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                   className="inline-flex items-center space-x-2 text-red-600 hover:text-red-700 font-semibold transition-colors duration-200 group"
                 >
                   <Mail className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" />
-                  <span>hexprep@gmail.com</span>
+                  <span>Support@rapidflowfulfillment.com</span>
                 </a>
               </div>
 
