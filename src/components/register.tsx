@@ -250,13 +250,13 @@ export default function Register() {
                 Let Rapid Flow Fulfillment handle the technical complexities so
                 you can focus on your core business objectives.
               </p>
-              <Button
+              {/* <Button
                 size="lg"
                 className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold px-12 py-6 rounded-2xl transition-all shadow-2xl hover:shadow-red-500/50 hover:scale-110 border border-red-400/50 text-lg group"
               >
                 +
                 <ArrowRight className="w-6 h-6 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
+              </Button> */}
             </div>
           </div>
 
