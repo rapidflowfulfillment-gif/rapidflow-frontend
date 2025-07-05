@@ -89,10 +89,7 @@ export default function Footer() {
             <h3 className="text-red-500 font-semibold mb-4">Contact us</h3>
             <ul className="space-y-2">
               <li className="hover:text-red-500 transition-colors">
-                Hillsboro OR
-              </li>
-              <li className="hover:text-red-500 transition-colors">
-                Chicago IL
+                New Jersey
               </li>
               <li>
                 <a
