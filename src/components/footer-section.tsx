@@ -33,7 +33,7 @@ export default function Footer() {
           </div>
         </div>
 
-         {/* Main Footer Content */}
+        {/* Main Footer Content */}
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           {/* About Section */}
           <div>
@@ -146,46 +146,48 @@ export default function Footer() {
           </div>
 
           {/* Social Media Icons */}
-          <div className="flex items-center gap-4">
+          <div>
+            <div className="flex justify-center items-center gap-4 mb-1">
+              <a
+                href="https://www.instagram.com/rapidflowfulfillment/profilecard/?igsh=aHZ3N2UzNHM1czR5"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-red-500 transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.tiktok.com/@rapidflowfulfillment?_t=ZP-8xajkfpL7lu&_r=1"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-red-500 transition-colors"
+                aria-label="TikTok"
+              >
+                <SiTiktok className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/rapid-flow-fulfillment/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-red-500 transition-colors"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.facebook.com/share/1hzduTzjTU/?mibextid=wwXIfr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-red-500 transition-colors"
+                aria-label="Facebook"
+              >
+                <Facebook className="w-5 h-5" />
+              </a>
+            </div>
             <span className="text-sm italic text-gray-700">
               Effortless Fulfillment. Every Time.
             </span>
-            <a
-              href="https://www.instagram.com/rapidflowfulfillment/profilecard/?igsh=aHZ3N2UzNHM1czR5"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-red-500 transition-colors"
-              aria-label="Instagram"
-            >
-              <Instagram className="w-5 h-5" />
-            </a>
-            <a
-              href="https://www.tiktok.com/@rapidflowfulfillment?_t=ZP-8xajkfpL7lu&_r=1"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-red-500 transition-colors"
-              aria-label="TikTok"
-            >
-              <SiTiktok className="w-5 h-5" />
-            </a>
-            <a
-              href="https://www.linkedin.com/company/rapid-flow-fulfillment/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-red-500 transition-colors"
-              aria-label="LinkedIn"
-            >
-              <Linkedin className="w-5 h-5" />
-            </a>
-            <a
-              href="https://www.facebook.com/share/1hzduTzjTU/?mibextid=wwXIfr"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-red-500 transition-colors"
-              aria-label="Facebook"
-            >
-              <Facebook className="w-5 h-5" />
-            </a>
           </div>
         </div>
       </div>

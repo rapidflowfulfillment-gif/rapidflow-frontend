@@ -279,9 +279,9 @@ export default function Testimonials() {
             <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
               Experience the same level of service and results that our clients rave about
             </p>
-            <button className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-xl hover:scale-105">
+            {/* <button className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-xl hover:scale-105">
               Get Started Today
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

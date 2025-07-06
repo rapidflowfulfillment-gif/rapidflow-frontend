@@ -8,7 +8,6 @@ import {
   Rocket,
   Globe,
   Users,
-  ArrowRight,
   Sparkles,
   Crown,
   Flame,
@@ -363,10 +362,10 @@ export default function Features() {
               </div>
 
               <div className="mt-8">
-                <button className="group bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold px-12 py-6 rounded-2xl text-xl transition-all duration-300 shadow-2xl hover:shadow-red-500/40 hover:scale-105 flex items-center gap-3 mx-auto">
+                {/* <button className="group bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold px-12 py-6 rounded-2xl text-xl transition-all duration-300 shadow-2xl hover:shadow-red-500/40 hover:scale-105 flex items-center gap-3 mx-auto">
                   Start Your Success Story
                   <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
-                </button>
+                </button> */}
               </div>
             </div>
           </div>

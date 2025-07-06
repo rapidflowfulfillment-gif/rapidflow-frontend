@@ -4,13 +4,12 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChevronDown, ChevronUp, Search, HelpCircle } from "lucide-react";
-// import { Button } from "@/components/ui/button";
-// import ContactModal from "./common/ContactModal";
+import ContactModal from "./common/ContactModal";
 
 export default function Faq() {
   const [searchTerm, setSearchTerm] = useState("");
   const [openItems, setOpenItems] = useState<number[]>([]);
-  // const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const faqData = [
     {
@@ -253,16 +252,19 @@ export default function Faq() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
+              onClick={() => setIsModalOpen(true)}
               href="#"
               className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg shadow-red-500/25"
             >
               Contact Us
             </a>
-            
           </div>
         </div>
 
-      
+        <ContactModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        />
       </section>
 
       <style jsx>{`
