@@ -1,3 +1,5 @@
+"use client";
+
 import { Instagram, Linkedin, Facebook } from "lucide-react";
 import { SiTiktok } from "react-icons/si";
 
@@ -109,20 +111,20 @@ export default function Footer() {
                 New Jersey
               </li>
               <li>
-                <a
-                  href="mailto:contact@hexprep.com"
+                <Link
+                  href="/#quote-form"
                   className="text-red-500 hover:text-red-400 transition-colors"
                 >
                   Support@rapidflowfulfillment.com
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="tel:+15033131528"
+                <Link
+                  href="/#quote-form"
                   className="text-red-500 hover:text-red-400 transition-colors"
                 >
                   281-883-6053
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
