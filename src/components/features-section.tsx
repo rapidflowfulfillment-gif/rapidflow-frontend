@@ -363,7 +363,7 @@ export default function Features() {
               </div>
 
               <div className="mt-20">
-                <Link href="/testimonial">
+                <Link href="#quote-form">
                   <button className="group bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold px-8 py-4 rounded-2xl text-xl transition-all duration-300 shadow-2xl hover:shadow-red-500/40 hover:scale-105 flex items-center gap-3 mx-auto">
                     <span>Get Started Today</span>
                   </button>
