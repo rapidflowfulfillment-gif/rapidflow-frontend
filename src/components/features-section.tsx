@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Truck,
   Clock,
@@ -13,8 +15,12 @@ import {
   Flame,
 } from "lucide-react";
 import Link from "next/link";
+import ContactModal from "./common/ContactModal";
+import { useState } from "react";
 
 export default function Features() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <section className="bg-gradient-to-br from-gray-50 via-white to-gray-100 py-20 px-6 relative overflow-hidden">
       {/* Advanced Background Elements */}
@@ -363,8 +369,11 @@ export default function Features() {
               </div>
 
               <div className="mt-20">
-                <Link href="#quote-form">
-                  <button className="group bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold px-8 py-4 rounded-2xl text-xl transition-all duration-300 shadow-2xl hover:shadow-red-500/40 hover:scale-105 flex items-center gap-3 mx-auto">
+                <Link href="#">
+                  <button
+                    onClick={() => setIsModalOpen(true)}
+                    className="group bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold px-8 py-4 rounded-2xl text-xl transition-all duration-300 shadow-2xl hover:shadow-red-500/40 hover:scale-105 flex items-center gap-3 mx-auto"
+                  >
                     <span>Get Started Today</span>
                   </button>
                 </Link>
@@ -373,6 +382,11 @@ export default function Features() {
           </div>
         </div>
       </div>
+      {/* Contact Modal */}
+      <ContactModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </section>
   );
 }
