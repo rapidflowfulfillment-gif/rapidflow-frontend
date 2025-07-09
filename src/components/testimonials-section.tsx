@@ -347,7 +347,7 @@ export default function Testimonials() {
         </div>
 
         {/* Stats Bar */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+        {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
           <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 hover:border-red-400/30 transition-all duration-500 group">
             <div className="flex items-center gap-4">
               <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -381,7 +381,7 @@ export default function Testimonials() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Main Testimonial Slider with Video */}
         <div className="relative mb-16">
