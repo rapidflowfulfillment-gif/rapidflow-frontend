@@ -2,11 +2,8 @@
 
 import {
   Truck,
-  Clock,
   Shield,
-  Star,
   CheckCircle,
-  TrendingUp,
   Rocket,
   Globe,
   Users,
@@ -156,7 +153,7 @@ export default function Features() {
                       within 48 hours. No delays, no excuses, just pure speed.
                     </p>
 
-                    <div className="flex items-center gap-4">
+                    {/* <div className="flex items-center gap-4">
                       <div className="flex items-center gap-2 bg-red-50 px-4 py-2 rounded-full">
                         <Clock className="w-5 h-5 text-red-600" />
                         <span className="text-red-600 font-semibold">
@@ -169,7 +166,7 @@ export default function Features() {
                           99.8% On-Time
                         </span>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
 
                   <div className="relative">
@@ -184,9 +181,9 @@ export default function Features() {
                         <div className="w-full bg-red-100 rounded-full h-3">
                           <div className="bg-gradient-to-r from-red-500 to-red-600 h-3 rounded-full w-full animate-pulse"></div>
                         </div>
-                        <div className="text-sm text-gray-600">
+                        {/* <div className="text-sm text-gray-600">
                           Industry Average: 5-7 days
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
@@ -208,11 +205,11 @@ export default function Features() {
                       <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-all duration-300">
                         <Globe className="w-7 h-7 text-white" />
                       </div>
-                      <div className="bg-green-100 px-3 py-1 rounded-full">
+                      {/* <div className="bg-green-100 px-3 py-1 rounded-full">
                         <span className="text-green-700 font-bold text-xs">
                           0% TAX
                         </span>
-                      </div>
+                      </div> */}
                     </div>
 
                     <h3 className="text-3xl font-bold text-black group-hover:text-green-600 transition-colors duration-300">
@@ -236,9 +233,9 @@ export default function Features() {
                       <div className="text-2xl font-bold text-green-600">
                         $0
                       </div>
-                      <div className="text-sm text-green-600">
+                      {/* <div className="text-sm text-green-600">
                         in sales tax, forever
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>
@@ -256,11 +253,11 @@ export default function Features() {
                       <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-all duration-300">
                         <Truck className="w-7 h-7 text-white" />
                       </div>
-                      <div className="bg-blue-100 px-3 py-1 rounded-full">
+                      {/* <div className="bg-blue-100 px-3 py-1 rounded-full">
                         <span className="text-blue-700 font-bold text-xs">
                           PRO GRADE
                         </span>
-                      </div>
+                      </div> */}
                     </div>
 
                     <h3 className="text-3xl font-bold text-black group-hover:text-blue-600 transition-colors duration-300">
@@ -274,10 +271,10 @@ export default function Features() {
 
                     <div className="space-y-3">
                       <div className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-blue-600" />
+                        {/* <CheckCircle className="w-5 h-5 text-blue-600" />
                         <span className="text-gray-700">
                           Dedicated loading bays
-                        </span>
+                        </span> */}
                       </div>
                       <div className="flex items-center gap-3">
                         <CheckCircle className="w-5 h-5 text-blue-600" />
@@ -332,14 +329,14 @@ export default function Features() {
                 ?
               </h3>
 
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 max-w-4xl mx-auto border border-white/20">
-                <div className="grid md:grid-cols-4 gap-6">
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 max-w-2xl mx-auto border border-white/20">
+                <div className="grid md:grid-cols-3 gap-6">
                   <div className="text-center group hover:scale-105 transition-all duration-300">
                     <div className="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:animate-bounce">
                       <Rocket className="w-8 h-8 text-white" />
                     </div>
                     <div className="text-2xl font-bold text-red-400">48H</div>
-                    <div className="text-white font-semibold">Turnaround</div>
+                    <div className="text-white font-semibold">Hours Maximum</div>
                   </div>
 
                   <div className="text-center group hover:scale-105 transition-all duration-300">
@@ -358,13 +355,13 @@ export default function Features() {
                     <div className="text-white font-semibold">Receiving</div>
                   </div>
 
-                  <div className="text-center group hover:scale-105 transition-all duration-300">
+                  {/* <div className="text-center group hover:scale-105 transition-all duration-300">
                     <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:animate-bounce">
                       <Star className="w-8 h-8 text-white" />
                     </div>
                     <div className="text-2xl font-bold text-yellow-400">#1</div>
                     <div className="text-white font-semibold">Best Price</div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
