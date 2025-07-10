@@ -279,7 +279,7 @@ export default function Features() {
                       <div className="flex items-center gap-3">
                         <CheckCircle className="w-5 h-5 text-blue-600" />
                         <span className="text-gray-700">
-                          24/7 receiving capability
+                          24/7 Receiving
                         </span>
                       </div>
                     </div>
