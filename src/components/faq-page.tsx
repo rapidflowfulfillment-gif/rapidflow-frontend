@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState } from "react";
@@ -5,79 +6,25 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChevronDown, ChevronUp, Search, HelpCircle } from "lucide-react";
 import ContactModal from "./common/ContactModal";
+import { useGetFaqsQuery } from "@/redux/api/faqApi";
 
 export default function Faq() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [openItems, setOpenItems] = useState<number[]>([]);
+  const [openItems, setOpenItems] = useState<string[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const faqData = [
-    {
-      id: 1,
-      category: "General",
-      question: "What is HexPrep and what services do you offer?",
-      answer:
-        "HexPrep is a professional Amazon FBA prep service provider. We offer comprehensive prep services including receiving, inspecting, prepping, packaging, and shipping your products to Amazon fulfillment centers. We also provide storage solutions and handle both FBA and FBM orders.",
-    },
-    {
-      id: 2,
-      category: "General",
-      question: "Where are your warehouses located?",
-      answer:
-        "We operate from two strategic locations: our main warehouse in Hillsboro, Oregon (which offers tax-free advantages), and our secondary facility in Chicago, Illinois for faster shipping to central and eastern markets.",
-    },
-    {
-      id: 3,
-      category: "Pricing",
-      question: "How much do your services cost?",
-      answer:
-        "Our pricing is competitive and varies based on the type and volume of services required. We offer transparent pricing with no hidden fees. Contact us for a customized quote based on your specific needs and volume requirements.",
-    },
-    {
-      id: 4,
-      category: "Pricing",
-      question: "Do you offer volume discounts?",
-      answer:
-        "Yes, we offer volume discounts for larger shipments and long-term partnerships. The more you ship with us, the better rates you'll receive. Contact our team to discuss volume pricing options.",
-    },
-    {
-      id: 5,
-      category: "Process",
-      question: "What is your turnaround time?",
-      answer:
-        "Our standard turnaround time is 48 hours from when we receive your inventory. This includes receiving, inspecting, prepping, and shipping to Amazon. For urgent orders, we may be able to accommodate faster processing.",
-    },
-    {
-      id: 6,
-      category: "Process",
-      question: "What prep services do you provide?",
-      answer:
-        "We provide all standard Amazon FBA prep services including: labeling, bagging, bundling, bubble wrapping, taping, removal of existing labels, quality inspections, and custom prep work as needed to meet Amazon's requirements.",
-    },
-    {
-      id: 7,
-      category: "Process",
-      question: "How do you handle damaged or defective items?",
-      answer:
-        "During our inspection process, we identify any damaged or defective items and immediately notify you with photos and details. We can either return these items to you, dispose of them per your instructions, or attempt repairs if feasible.",
-    },
-    {
-      id: 8,
-      category: "Shipping",
-      question: "How do I send my products to your warehouse?",
-      answer:
-        "You can ship your products directly to our warehouse addresses. We'll provide you with specific shipping instructions and our warehouse address once you become a client. We accept shipments via all major carriers.",
-    },
-  ];
+  const { data: faqD = { data: [] }, isLoading, isError } = useGetFaqsQuery();
+  const faqData = faqD?.data;
 
   const categories = [
     "All",
-    ...Array.from(new Set(faqData.map((item) => item.category))),
+    ...(Array.from(
+      new Set(faqData.map((item: any) => item.category))
+    ) as string[]),
   ];
 
-  const [selectedCategory, setSelectedCategory] = useState("All");
-
-  const filteredFAQs = faqData.filter((item) => {
+  const filteredFAQs = faqData.filter((item: any) => {
     const matchesSearch =
       item.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
       item.answer.toLowerCase().includes(searchTerm.toLowerCase());
@@ -86,7 +33,7 @@ export default function Faq() {
     return matchesSearch && matchesCategory;
   });
 
-  const toggleItem = (id: number) => {
+  const toggleItem = (id: string) => {
     setOpenItems((prev) =>
       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
     );
@@ -94,37 +41,6 @@ export default function Faq() {
 
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
-      {/* Animated Koro Background Elements */}
-      <div
-        className="absolute inset-0 pointer-events-none overflow-hidden"
-        style={{ height: "calc(100% - 300px)" }}
-      >
-        {/* Floating geometric shapes */}
-        <div className="absolute top-10 left-10 w-20 h-20 border-2 border-red-500 rotate-45 animate-pulse opacity-20"></div>
-        <div className="absolute top-32 right-20 w-16 h-16 bg-red-500 opacity-10 animate-bounce"></div>
-        <div className="absolute bottom-20 left-20 w-24 h-24 border-2 border-white rotate-12 animate-spin-slow opacity-15"></div>
-        <div className="absolute bottom-40 right-10 w-12 h-12 bg-white opacity-5 animate-pulse"></div>
-
-        {/* Animated lines - contained within main content */}
-        <div
-          className="absolute top-0 left-1/4 w-px bg-gradient-to-b from-transparent via-red-500 to-transparent opacity-20 animate-pulse"
-          style={{ height: "calc(100vh - 200px)" }}
-        ></div>
-        <div
-          className="absolute top-0 right-1/3 w-px bg-gradient-to-b from-transparent via-white to-transparent opacity-10 animate-pulse delay-1000"
-          style={{ height: "calc(100vh - 200px)" }}
-        ></div>
-
-        {/* Valo-style geometric patterns */}
-        <div className="absolute top-1/4 left-0 w-32 h-32 border-l-2 border-t-2 border-red-500 opacity-20 animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-0 w-32 h-32 border-r-2 border-b-2 border-white opacity-15 animate-pulse delay-500"></div>
-
-        {/* Moving particles */}
-        <div className="absolute top-1/2 left-1/2 w-2 h-2 bg-red-500 rounded-full animate-ping opacity-30"></div>
-        <div className="absolute top-1/3 left-1/3 w-1 h-1 bg-white rounded-full animate-ping opacity-20 delay-700"></div>
-        <div className="absolute bottom-1/3 right-1/3 w-1.5 h-1.5 bg-red-500 rounded-full animate-ping opacity-25 delay-1500"></div>
-      </div>
-
       {/* Hero Section */}
       <section className="relative bg-black py-36 px-6 border-b border-red-500/20">
         <div className="max-w-4xl mx-auto text-center relative z-10">
@@ -161,7 +77,7 @@ export default function Faq() {
             <div className="flex gap-2 flex-wrap">
               {categories.map((category) => (
                 <button
-                  key={category}
+                  key={category as string}
                   onClick={() => setSelectedCategory(category)}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
                     selectedCategory === category
@@ -180,7 +96,13 @@ export default function Faq() {
       {/* FAQ Content */}
       <section className="relative py-16 px-6">
         <div className="max-w-4xl mx-auto relative z-10">
-          {filteredFAQs.length === 0 ? (
+          {isLoading ? (
+            <div className="text-center text-white py-12">Loading FAQs...</div>
+          ) : isError ? (
+            <div className="text-center text-red-400 py-12">
+              Failed to load FAQs. Please try again.
+            </div>
+          ) : filteredFAQs.length === 0 ? (
             <div className="text-center py-12">
               <div className="w-16 h-16 bg-gray-800 border border-red-500/30 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Search className="w-8 h-8 text-red-400" />
@@ -194,7 +116,7 @@ export default function Faq() {
             </div>
           ) : (
             <div className="space-y-4">
-              {filteredFAQs.map((item) => (
+              {filteredFAQs.map((item: any) => (
                 <Card
                   key={item.id}
                   className="bg-gray-900 border-gray-800 hover:border-red-500/50 shadow-lg hover:shadow-red-500/10 transition-all duration-300 transform hover:scale-[1.02]"
@@ -266,21 +188,6 @@ export default function Faq() {
           onClose={() => setIsModalOpen(false)}
         />
       </section>
-
-      <style jsx>{`
-        @keyframes spin-slow {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-
-        .animate-spin-slow {
-          animation: spin-slow 8s linear infinite;
-        }
-      `}</style>
     </div>
   );
 }
