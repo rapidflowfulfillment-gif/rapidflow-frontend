@@ -18,41 +18,7 @@ const faqApi = baseApi.injectEndpoints({
         method: "GET",
       }),
     }),
-
-    // create faq
-    createFaq: build.mutation({
-      query: (data) => ({
-        url: `faqs`,
-        method: "POST",
-        body: data,
-      }),
-      invalidatesTags: ["Faqs"],
-    }),
-
-    // update faq
-    updateFaq: build.mutation({
-      query: (data) => ({
-        url: `faqs/${data.id}`,
-        method: "PATCH",
-        body: data,
-      }),
-      invalidatesTags: ["Faqs"],
-    }),
-
-    // delete faq
-    deleteFaq: build.mutation({
-      query: (id) => ({
-        url: `faqs/${id}`,
-        method: "DELETE",
-      }),
-      invalidatesTags: ["Faqs"],
-    }),
   }),
 });
 
-export const {
-  useGetFaqsQuery,
-  useCreateFaqMutation,
-  useUpdateFaqMutation,
-  useDeleteFaqMutation,
-} = faqApi;
+export const { useGetFaqsQuery } = faqApi;
