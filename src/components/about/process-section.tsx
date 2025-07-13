@@ -1,30 +1,35 @@
 "use client"
 import { useState, useEffect } from "react"
 import { Check } from "lucide-react"
+import { useGetProcessesQuery } from "@/redux/api/processApi"
+
 
 export default function ProcessSection() {
   const [currentStep, setCurrentStep] = useState(1)
   const [isHovered, setIsHovered] = useState(false)
+  const [steps, setSteps] = useState<{ id: number; text: string }[]>([])
 
-  const steps = [
-    { id: 1, text: "Receive the package" },
-    { id: 2, text: "Inspect the package, ensuring everything is correct" },
-    { id: 3, text: "Start prepping the units" },
-    { id: 4, text: "Package the units" },
-    {
-      id: 5,
-      text: "Notify the customer that everything is ready for shipment",
-    },
-    { id: 6, text: "We ship the package out" },
-  ]
+  const { data } = useGetProcessesQuery({})
+
+  useEffect(() => {
+    if (data?.data?.[0]) {
+      const process = data.data[0]
+      const newSteps = [
+        { id: process.orderId1, text: process.textRoles1 },
+        { id: process.orderId2, text: process.textRoles2 },
+        { id: process.orderId3, text: process.textRoles3 },
+        { id: process.orderId4, text: process.textRoles4 },
+        { id: process.orderId5, text: process.textRoles5 },
+        { id: process.orderId6, text: process.textRoles6 },
+      ]
+      setSteps(newSteps.sort((a, b) => a.id - b.id))
+    }
+  }, [data])
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentStep((prev) => {
-        if (prev >= 7) {
-          // reset to the first step
-          return 1
-        }
+        if (prev >= 7) return 1
         return prev + 1
       })
     }, 3000)
@@ -62,10 +67,7 @@ export default function ProcessSection() {
   }
 
   return (
-    <section
-      id="our-process"
-      className="bg-gradient-to-br from-gray-50 via-white to-gray-100 py-20 px-6 relative overflow-hidden"
-    >
+    <section id="our-process" className="bg-gradient-to-br from-gray-50 via-white to-gray-100 py-20 px-6 relative overflow-hidden">
       {/* Animated Background Image */}
       <div className="absolute inset-0 opacity-5">
         <div
@@ -94,7 +96,8 @@ export default function ProcessSection() {
             Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600">Process</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            A streamlined 6-step process designed to handle your packages with precision and care
+            {data?.data?.[0]?.description ??
+              "A streamlined 6-step process designed to handle your packages with precision and care"}
           </p>
         </div>
 
@@ -102,7 +105,6 @@ export default function ProcessSection() {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Side - Visual Progress */}
           <div className="relative">
-            {/* Central Progress Circle */}
             <div
               className="relative w-80 h-80 mx-auto transition-transform duration-700 ease-in-out cursor-pointer hover:rotate-360"
               onMouseEnter={() => setIsHovered(true)}
@@ -111,21 +113,19 @@ export default function ProcessSection() {
                 transform: isHovered ? "rotate(360deg) scale(1.05)" : "rotate(0deg) scale(1)",
               }}
             >
-              {/* Background Circle */}
               <div className="absolute inset-0 rounded-full border-8 border-gray-200"></div>
-
-              {/* Progress Circle */}
               <div
                 className="absolute inset-0 rounded-full border-8 border-red-500 transition-all duration-1000"
                 style={{
                   clipPath: `polygon(50% 50%, 50% 0%, ${
                     50 +
                     50 * Math.cos((((Math.min(currentStep, steps.length) / steps.length) * 360 - 90) * Math.PI) / 180)
-                  }% ${50 + 50 * Math.sin((((Math.min(currentStep, steps.length) / steps.length) * 360 - 90) * Math.PI) / 180)}%, 50% 50%)`,
+                  }% ${
+                    50 +
+                    50 * Math.sin((((Math.min(currentStep, steps.length) / steps.length) * 360 - 90) * Math.PI) / 180)
+                  }%, 50% 50%)`,
                 }}
               ></div>
-
-              {/* Center Content */}
               <div className="absolute inset-8 bg-white rounded-full shadow-2xl flex flex-col items-center justify-center">
                 <div className="text-4xl font-black text-gray-900 mb-2">Step</div>
                 <div className="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600">
@@ -133,8 +133,6 @@ export default function ProcessSection() {
                 </div>
                 <div className="text-sm text-gray-500 mt-2">of {steps.length}</div>
               </div>
-
-              {/* Step Indicators Around Circle */}
               {steps.map((step, index) => {
                 const angle = (index / steps.length) * 360 - 90
                 const x = 50 + 45 * Math.cos((angle * Math.PI) / 180)
@@ -165,19 +163,18 @@ export default function ProcessSection() {
                     status === "active"
                       ? "bg-gradient-to-r from-red-50 to-red-100 border-2 border-red-200 scale-105 shadow-xl"
                       : status === "completed"
-                        ? "bg-gradient-to-r from-green-50 to-green-100 border-2 border-green-200 shadow-lg"
-                        : "bg-white border-2 border-gray-100 shadow-md hover:shadow-lg"
+                      ? "bg-gradient-to-r from-green-50 to-green-100 border-2 border-green-200 shadow-lg"
+                      : "bg-white border-2 border-gray-100 shadow-md hover:shadow-lg"
                   }`}
                 >
-                  {/* Step Number Badge */}
                   <div className="flex items-center gap-4 mb-3">
                     <div
                       className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold ${
                         status === "active"
                           ? "bg-red-500 text-white"
                           : status === "completed"
-                            ? "bg-green-500 text-white"
-                            : "bg-gray-300 text-gray-600"
+                          ? "bg-green-500 text-white"
+                          : "bg-gray-300 text-gray-600"
                       }`}
                     >
                       {status === "completed" ? <Check className="w-5 h-5" /> : step.id}
@@ -187,28 +184,24 @@ export default function ProcessSection() {
                         status === "active"
                           ? "text-red-600"
                           : status === "completed"
-                            ? "text-green-600"
-                            : "text-gray-500"
+                          ? "text-green-600"
+                          : "text-gray-500"
                       }`}
                     >
                       {status === "active" ? "In Progress" : status === "completed" ? "Completed" : "Pending"}
                     </div>
                   </div>
-
-                  {/* Step Content */}
                   <p
                     className={`text-lg leading-relaxed ${
                       status === "active"
                         ? "text-red-900 font-semibold"
                         : status === "completed"
-                          ? "text-green-900 font-medium"
-                          : "text-gray-700"
+                        ? "text-green-900 font-medium"
+                        : "text-gray-700"
                     }`}
                   >
                     {step.text}
                   </p>
-
-                  {/* Active Step Indicator */}
                   {status === "active" && (
                     <div className="absolute -left-1 top-1/2 transform -translate-y-1/2 w-2 h-16 bg-gradient-to-b from-red-500 to-red-600 rounded-r-full"></div>
                   )}
