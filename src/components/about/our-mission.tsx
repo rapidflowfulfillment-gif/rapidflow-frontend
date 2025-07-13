@@ -1,9 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useGetMissionsQuery } from "@/redux/api/missionApi";
 
 export default function OurMissionSection() {
   const [isVisible, setIsVisible] = useState(false);
+
+  const { data, isLoading, isError } = useGetMissionsQuery({});
+  const mission = data?.data?.[0];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -58,7 +62,7 @@ export default function OurMissionSection() {
         <div className="absolute bottom-40 left-32 w-48 h-48 bg-white rounded-full opacity-5 blur-3xl animate-pulse delay-1000"></div>
       </div>
 
-      {/* Content Section - Left Only */}
+      {/* Content Section */}
       <div className="max-w-4xl mx-auto relative z-10 h-full flex items-center">
         <div className="space-y-8">
           <div
@@ -69,10 +73,10 @@ export default function OurMissionSection() {
             }`}
           >
             <h2 className="text-6xl lg:text-8xl font-black text-white leading-none mb-8">
-              Our
+              {mission?.title?.split(" ")[0] || "Our"}
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600">
-                Mission
+                {mission?.title?.split(" ")[1] || "Mission"}
               </span>
             </h2>
           </div>
@@ -84,27 +88,20 @@ export default function OurMissionSection() {
                 : "-translate-x-10 opacity-0"
             }`}
           >
-            <p className="text-2xl text-white leading-relaxed">
-              At{" "}
-              <span className="text-red-400 font-bold">
-                Rapid Flow Fulfillment
-              </span>
-              , our mission is simple: to deliver the kind of prep and logistics
-              service we always wished we had as sellers. After years of
-              navigating unreliable, slow, and overpriced fulfillment centers
-              while running our own e-commerce business, we realized the
-              industry needed a serious upgrade. That’s why we built Rapid Flow
-              — a fulfillment solution created by sellers, for sellers. We’re
-              here to bring speed, transparency, and true partnership back to
-              the 3PL experience. Our goal is to help e-commerce brands grow by
-              handling their backend operations with the same care and urgency
-              we gave our own.
-            </p>
+            {isLoading ? (
+              <p className="text-2xl text-gray-300">Loading mission...</p>
+            ) : isError ? (
+              <p className="text-2xl text-red-400">Failed to load mission.</p>
+            ) : (
+              <p className="text-2xl text-white leading-relaxed">
+                {mission?.description || "No mission data available."}
+              </p>
+            )}
           </div>
         </div>
       </div>
 
-      {/* Bottom decorative line */}
+      {/* Bottom border line */}
       <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
     </section>
   );
