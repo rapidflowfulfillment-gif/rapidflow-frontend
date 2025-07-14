@@ -1,19 +1,18 @@
-"use client"
-import { useState, useEffect } from "react"
-import { Check } from "lucide-react"
-import { useGetProcessesQuery } from "@/redux/api/processApi"
-
+"use client";
+import { useState, useEffect } from "react";
+import { Check } from "lucide-react";
+import { useGetProcessesQuery } from "@/redux/api/processApi";
 
 export default function ProcessSection() {
-  const [currentStep, setCurrentStep] = useState(1)
-  const [isHovered, setIsHovered] = useState(false)
-  const [steps, setSteps] = useState<{ id: number; text: string }[]>([])
+  const [currentStep, setCurrentStep] = useState(1);
+  const [isHovered, setIsHovered] = useState(false);
+  const [steps, setSteps] = useState<{ id: number; text: string }[]>([]);
 
-  const { data } = useGetProcessesQuery({})
+  const { data } = useGetProcessesQuery({});
 
   useEffect(() => {
     if (data?.data?.[0]) {
-      const process = data.data[0]
+      const process = data.data[0];
       const newSteps = [
         { id: process.orderId1, text: process.textRoles1 },
         { id: process.orderId2, text: process.textRoles2 },
@@ -21,53 +20,56 @@ export default function ProcessSection() {
         { id: process.orderId4, text: process.textRoles4 },
         { id: process.orderId5, text: process.textRoles5 },
         { id: process.orderId6, text: process.textRoles6 },
-      ]
-      setSteps(newSteps.sort((a, b) => a.id - b.id))
+      ];
+      setSteps(newSteps.sort((a, b) => a.id - b.id));
     }
-  }, [data])
+  }, [data]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentStep((prev) => {
-        if (prev >= 7) return 1
-        return prev + 1
-      })
-    }, 3000)
+        if (prev >= 7) return 1;
+        return prev + 1;
+      });
+    }, 2000);
 
-    return () => clearInterval(interval)
-  }, [])
+    return () => clearInterval(interval);
+  }, []);
 
   const getStepStatus = (stepId: number) => {
-    if (stepId < currentStep) return "completed"
-    if (stepId === currentStep) return "active"
-    return "pending"
-  }
+    if (stepId < currentStep) return "completed";
+    if (stepId === currentStep) return "active";
+    return "pending";
+  };
 
   const getStepIcon = (stepId: number) => {
-    const status = getStepStatus(stepId)
+    const status = getStepStatus(stepId);
     if (status === "completed") {
       return (
         <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center shadow-lg">
           <Check className="w-8 h-8 text-white" />
         </div>
-      )
+      );
     }
     if (status === "active") {
       return (
         <div className="w-16 h-16 bg-gradient-to-br from-black to-gray-800 rounded-2xl flex items-center justify-center shadow-lg animate-pulse">
           <span className="text-white font-bold text-xl">{stepId}</span>
         </div>
-      )
+      );
     }
     return (
       <div className="w-16 h-16 bg-gradient-to-br from-gray-300 to-gray-400 rounded-2xl flex items-center justify-center shadow-lg">
         <span className="text-white font-bold text-xl">{stepId}</span>
       </div>
-    )
-  }
+    );
+  };
 
   return (
-    <section id="our-process" className="bg-gradient-to-br from-gray-50 via-white to-gray-100 py-20 px-6 relative overflow-hidden">
+    <section
+      id="our-process"
+      className="bg-gradient-to-br from-gray-50 via-white to-gray-100 py-20 px-6 relative overflow-hidden"
+    >
       {/* Animated Background Image */}
       <div className="absolute inset-0 opacity-5">
         <div
@@ -90,10 +92,12 @@ export default function ProcessSection() {
         {/* Header Section */}
         <div className="text-center mb-16">
           <div className="inline-block bg-red-500/10 backdrop-blur-sm px-6 py-3 rounded-full border border-red-500/20 mb-6">
-            <span className="text-red-600 font-semibold text-sm uppercase tracking-wider">How We Work</span>
+            <span className="text-red-600 font-semibold text-sm uppercase tracking-wider">
+              How We Work changed to What Sets Us Apart
+            </span>
           </div>
           <h2 className="text-4xl md:text-6xl font-black text-gray-900 mb-6">
-            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600">Process</span>
+            {data?.data?.[0]?.title ?? "Our Process"}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             {data?.data?.[0]?.description ??
@@ -110,7 +114,9 @@ export default function ProcessSection() {
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
               style={{
-                transform: isHovered ? "rotate(360deg) scale(1.05)" : "rotate(0deg) scale(1)",
+                transform: isHovered
+                  ? "rotate(360deg) scale(1.05)"
+                  : "rotate(0deg) scale(1)",
               }}
             >
               <div className="absolute inset-0 rounded-full border-8 border-gray-200"></div>
@@ -119,24 +125,42 @@ export default function ProcessSection() {
                 style={{
                   clipPath: `polygon(50% 50%, 50% 0%, ${
                     50 +
-                    50 * Math.cos((((Math.min(currentStep, steps.length) / steps.length) * 360 - 90) * Math.PI) / 180)
+                    50 *
+                      Math.cos(
+                        (((Math.min(currentStep, steps.length) / steps.length) *
+                          360 -
+                          90) *
+                          Math.PI) /
+                          180
+                      )
                   }% ${
                     50 +
-                    50 * Math.sin((((Math.min(currentStep, steps.length) / steps.length) * 360 - 90) * Math.PI) / 180)
+                    50 *
+                      Math.sin(
+                        (((Math.min(currentStep, steps.length) / steps.length) *
+                          360 -
+                          90) *
+                          Math.PI) /
+                          180
+                      )
                   }%, 50% 50%)`,
                 }}
               ></div>
               <div className="absolute inset-8 bg-white rounded-full shadow-2xl flex flex-col items-center justify-center">
-                <div className="text-4xl font-black text-gray-900 mb-2">Step</div>
+                <div className="text-4xl font-black text-gray-900 mb-2">
+                  Step
+                </div>
                 <div className="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600">
                   {Math.min(currentStep, steps.length)}
                 </div>
-                <div className="text-sm text-gray-500 mt-2">of {steps.length}</div>
+                <div className="text-sm text-gray-500 mt-2">
+                  of {steps.length}
+                </div>
               </div>
               {steps.map((step, index) => {
-                const angle = (index / steps.length) * 360 - 90
-                const x = 50 + 45 * Math.cos((angle * Math.PI) / 180)
-                const y = 50 + 45 * Math.sin((angle * Math.PI) / 180)
+                const angle = (index / steps.length) * 360 - 90;
+                const x = 50 + 45 * Math.cos((angle * Math.PI) / 180);
+                const y = 50 + 45 * Math.sin((angle * Math.PI) / 180);
                 return (
                   <div
                     key={step.id}
@@ -147,7 +171,7 @@ export default function ProcessSection() {
                   >
                     {getStepIcon(step.id)}
                   </div>
-                )
+                );
               })}
             </div>
           </div>
@@ -155,7 +179,7 @@ export default function ProcessSection() {
           {/* Right Side - Step Details */}
           <div className="space-y-6">
             {steps.map((step) => {
-              const status = getStepStatus(step.id)
+              const status = getStepStatus(step.id);
               return (
                 <div
                   key={step.id}
@@ -177,7 +201,11 @@ export default function ProcessSection() {
                           : "bg-gray-300 text-gray-600"
                       }`}
                     >
-                      {status === "completed" ? <Check className="w-5 h-5" /> : step.id}
+                      {status === "completed" ? (
+                        <Check className="w-5 h-5" />
+                      ) : (
+                        step.id
+                      )}
                     </div>
                     <div
                       className={`text-sm font-semibold uppercase tracking-wider ${
@@ -188,7 +216,11 @@ export default function ProcessSection() {
                           : "text-gray-500"
                       }`}
                     >
-                      {status === "active" ? "In Progress" : status === "completed" ? "Completed" : "Pending"}
+                      {status === "active"
+                        ? "In Progress"
+                        : status === "completed"
+                        ? "Completed"
+                        : "Pending"}
                     </div>
                   </div>
                   <p
@@ -206,7 +238,7 @@ export default function ProcessSection() {
                     <div className="absolute -left-1 top-1/2 transform -translate-y-1/2 w-2 h-16 bg-gradient-to-b from-red-500 to-red-600 rounded-r-full"></div>
                   )}
                 </div>
-              )
+              );
             })}
           </div>
         </div>
@@ -215,15 +247,24 @@ export default function ProcessSection() {
         <div className="mt-16 max-w-2xl mx-auto">
           <div className="bg-white rounded-2xl p-8 shadow-xl border border-gray-100">
             <div className="flex items-center justify-between mb-4">
-              <span className="text-lg font-semibold text-gray-700">Overall Progress</span>
+              <span className="text-lg font-semibold text-gray-700">
+                Overall Progress
+              </span>
               <span className="text-lg font-bold text-red-600">
-                {Math.round((Math.min(currentStep, steps.length) / steps.length) * 100)}%
+                {Math.round(
+                  (Math.min(currentStep, steps.length) / steps.length) * 100
+                )}
+                %
               </span>
             </div>
             <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
               <div
                 className="bg-gradient-to-r from-red-500 to-red-600 h-4 rounded-full transition-all duration-1000 relative overflow-hidden"
-                style={{ width: `${(Math.min(currentStep, steps.length) / steps.length) * 100}%` }}
+                style={{
+                  width: `${
+                    (Math.min(currentStep, steps.length) / steps.length) * 100
+                  }%`,
+                }}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 animate-pulse"></div>
               </div>
@@ -234,7 +275,8 @@ export default function ProcessSection() {
 
       <style jsx>{`
         @keyframes float {
-          0%, 100% {
+          0%,
+          100% {
             transform: translateY(0px) scale(1);
           }
           50% {
@@ -243,5 +285,5 @@ export default function ProcessSection() {
         }
       `}</style>
     </section>
-  )
+  );
 }

@@ -25,8 +25,8 @@ export default function CtaSection() {
           </h2>
 
           <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Join hundreds of successful sellers who trust us for their business
-            growth
+            Join hundreds of successful businesses who trust us for their
+            business growth
           </p>
         </div>
 
@@ -41,8 +41,6 @@ export default function CtaSection() {
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
             </span>
           </Button>
-
-          
         </div>
       </div>
 
