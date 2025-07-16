@@ -582,7 +582,7 @@ export default function Register() {
                             <div className="flex items-center gap-2">
                               <div>
                                 {" "}
-                                <ShoppingBagIcon className="w-6 h-6 text-black" />{" "}
+                                <ShoppingBagIcon className="w-4 h-4 text-black" />{" "}
                               </div>
                               <div>Retail</div>
                             </div>
