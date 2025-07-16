@@ -2,13 +2,11 @@
 
 import {
   Truck,
-  Shield,
   CheckCircle,
   Rocket,
   Globe,
   Users,
   Crown,
-  Flame,
 } from "lucide-react";
 import Link from "next/link";
 import ContactModal from "./common/ContactModal";
@@ -36,11 +34,10 @@ export default function Features() {
           </div>
 
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-black mb-6 leading-tight">
-            {home?.title?.split(" ").slice(0, -1).join(" ")}{" "}
+            {home?.title?.split(" ").slice(0, -2).join(" ")}{" "}
             <span className="text-red-600 relative inline-block">
-              {home?.title?.split(" ").slice(-1)}
+              {home?.title?.split(" ").slice(-2).join(" ")}
               <div className="absolute -bottom-3 left-0 right-0 h-3 bg-gradient-to-r from-red-500 to-red-600 rounded-full animate-pulse"></div>
-              <Flame className="absolute -top-2 -right-2 w-8 h-8 text-red-500 animate-bounce" />
             </span>
           </h2>
 
@@ -118,10 +115,10 @@ export default function Features() {
 
                     <div className="bg-green-50 rounded-xl p-4">
                       <div className="flex items-center gap-2 mb-2">
-                        <Shield className="w-5 h-5 text-green-600" />
+                        {/* <Shield className="w-5 h-5 text-green-600" />
                         <span className="font-semibold text-green-700">
                           Your Savings
-                        </span>
+                        </span> */}
                       </div>
                       <div className="text-2xl font-bold text-green-600">
                         ${home?.taxCardPrice || 0}
@@ -215,7 +212,7 @@ export default function Features() {
                     <div className="text-2xl font-bold text-blue-400">
                       {home?.receiveCardServiceTime}
                     </div>
-                    <div className="text-white font-semibold">Receiving</div>
+                    <div className="text-white font-semibold">hr receiving</div>
                   </div>
                 </div>
               </div>

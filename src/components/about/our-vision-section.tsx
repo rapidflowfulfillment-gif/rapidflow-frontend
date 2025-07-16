@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Eye, Target, Zap, Star } from "lucide-react";
+import {  Zap, Star } from "lucide-react";
 import { useGetVisionsQuery } from "@/redux/api/visionApi";
+import { MdElectricalServices } from "react-icons/md";
 
 export default function OurVisionSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -49,17 +50,16 @@ export default function OurVisionSection() {
               }`}
             >
               <div className="inline-flex items-center gap-3 bg-red-500/15 backdrop-blur-sm px-8 py-4 rounded-full border-2 border-red-500/30 mb-8 shadow-2xl shadow-red-500/20">
-                <Eye className="w-6 h-6 text-red-400" />
-                <span className="text-white font-bold text-4xl uppercase tracking-wider">
+                {/* <Eye className="w-6 h-6 text-red-400" /> */}
+                <span className="text-red-600 font-bold text-xl uppercase tracking-wider">
                   {vision?.title || "Our Vision"}
                 </span>
               </div>
 
               <h2 className="text-6xl md:text-8xl font-black text-white mb-8 leading-tight">
-                Shaping The
-                <br />
+                Our {" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-600 drop-shadow-2xl">
-                  Future
+                  Services
                 </span>
               </h2>
 
@@ -84,7 +84,7 @@ export default function OurVisionSection() {
                 <div className="bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-2xl rounded-3xl p-10 border border-white/30 shadow-2xl">
                   <div className="flex items-center gap-4 mb-6">
                     <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center shadow-xl shadow-red-500/50">
-                      <Target className="w-8 h-8 text-white" />
+                      <MdElectricalServices className="w-8 h-8 text-white" />
                     </div>
                     <h3 className="text-3xl font-black text-white">
                       {vision?.ourVisionCardTitle || "Our Vision"}

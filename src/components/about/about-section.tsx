@@ -48,13 +48,22 @@ export default function AboutSection() {
                 }`}
               >
                 <div className="inline-block bg-red-500/10 backdrop-blur-sm px-6 py-3 rounded-full border border-red-500/20 mb-6">
-                  <span className="text-red-400 font-semibold text-sm uppercase tracking-wider">
-                    About Rapid Flow Fulfillment
-                  </span>
-                </div>
+  <span className="text-red-400 font-semibold text-sm uppercase tracking-wider">
+    About{" "}
+    <span className="font-bold text-red-500">
+      Rapid Flow Fulfillment
+    </span>
+  </span>
+</div>
 
-                <h2 className="text-5xl lg:text-6xl font-black text-white leading-tight mb-4">
-                  {fra?.title || "Your Trusted"}
+
+                <h2 className="text-5xl lg:text-6xl font-black leading-tight mb-4">
+                  <span className="text-white">
+                    {fra?.title?.split(" ").slice(0, -2).join(" ")}{" "}
+                  </span>
+                  <span className="text-red-600">
+                    {fra?.title?.split(" ").slice(-2).join(" ")}
+                  </span>
                 </h2>
               </div>
             </div>
@@ -100,7 +109,9 @@ export default function AboutSection() {
                       <div className="text-2xl font-black text-white mb-1">
                         {fra?.fastTitle || "Reliability"}
                       </div>
-                      <div className="text-gray-400">{fra?.fastDescription || "Reliability"}</div>
+                      <div className="text-gray-400">
+                        {fra?.fastDescription || "Reliability"}
+                      </div>
                     </div>
                   </div>
                 </div>

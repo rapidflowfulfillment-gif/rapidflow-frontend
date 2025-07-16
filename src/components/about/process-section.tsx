@@ -273,7 +273,7 @@ export default function ProcessSection() {
             <p className="text-center mt-6 text-gray-600 text-lg font-medium">
               {/* {/* Progress Caption */}{" "}
               <span className="font-semibold text-red-600">
-                The Rapid Flow Formula
+                From Dock to Door: The Rapid Flow Formula
               </span>
             </p>
           </div>

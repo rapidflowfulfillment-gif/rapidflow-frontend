@@ -30,7 +30,7 @@ export default function OurMissionSection() {
   return (
     <section
       id="our-mission"
-      className="bg-black py-20 px-6 relative overflow-hidden min-h-screen"
+      className="bg-black py-10 px-6 relative overflow-hidden"
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
@@ -63,8 +63,8 @@ export default function OurMissionSection() {
       </div>
 
       {/* Content Section */}
-      <div className="max-w-4xl mx-auto relative z-10 h-full flex items-center">
-        <div className="space-y-8">
+      <div className="max-w-4xl mx-auto relative z-10 flex items-start">
+        <div className="space-y-1">
           <div
             className={`transition-all duration-1000 transform ${
               isVisible
@@ -72,7 +72,7 @@ export default function OurMissionSection() {
                 : "-translate-x-10 opacity-0"
             }`}
           >
-            <h2 className="text-6xl lg:text-8xl font-black text-white leading-none mb-8">
+            <h2 className="text-6xl lg:text-8xl font-black text-white leading-none mb-6">
               {mission?.title?.split(" ")[0] || "Our"}
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600">
@@ -93,7 +93,7 @@ export default function OurMissionSection() {
             ) : isError ? (
               <p className="text-2xl text-red-400">Failed to load mission.</p>
             ) : (
-              <p className="text-2xl text-white leading-relaxed">
+              <p className="text-2xl text-white leading-relaxed mb-8">
                 {mission?.description || "No mission data available."}
               </p>
             )}

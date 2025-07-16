@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, Menu, X, Settings, Target, Brain } from "lucide-react";
+import { ChevronDown, Menu, X, Settings, Target } from "lucide-react";
+import { FaWarehouse } from "react-icons/fa";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -118,7 +119,7 @@ export default function Navbar() {
                       },
                       {
                         href: "/about#our-vision",
-                        icon: <Brain className="w-5 h-5 text-white" />,
+                        icon: <FaWarehouse className="w-5 h-5 text-white" />,
                         title: " Our Services",
                         desc: "Built for every channel.",
                       },

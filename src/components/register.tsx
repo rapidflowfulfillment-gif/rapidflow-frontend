@@ -1,10 +1,15 @@
 "use client";
 
 import type React from "react";
+import { TbTruckDelivery } from "react-icons/tb";
+import { FiBox } from "react-icons/fi";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { FaShopify, FaTiktok, FaMagento } from "react-icons/fa";
+import { FaBoltLightning } from "react-icons/fa6";
+import { SiBigcommerce } from "react-icons/si";
 import {
   Select,
   SelectContent,
@@ -15,15 +20,16 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   CheckCircle,
-  Star,
   Clock,
   ArrowRight,
   Sparkles,
-  Trophy,
   Users,
   Loader2,
   Handshake,
+  LucideCalendarCheck,
 } from "lucide-react";
+import { FaAmazon } from "react-icons/fa";
+import { TbBrandWalmart } from "react-icons/tb";
 import { useToast } from "@/components/ui/use-toast";
 // import Image from "next/image";
 // import logo from "@/assets/logos.png";
@@ -200,7 +206,7 @@ export default function Register() {
                 Rapid Flow
                 <br />
                 <span className="text-4xl lg:text-5xl text-red-400">
-                  Fulfillment Services
+                  Fulfillment
                 </span>
               </h1>
 
@@ -216,33 +222,39 @@ export default function Register() {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-red-400/50 transition-all duration-500 hover:scale-105 group">
                 <div className="text-center">
-                  <Trophy className="w-8 h-8 text-red-400 mx-auto mb-3 group-hover:scale-110 transition-transform" />
-                  <div className="text-3xl font-bold text-white mb-1">32000+</div>
-                  <div className="text-sm text-gray-300">Projects</div>
+                  <FiBox className="w-8 h-8 text-red-400 mx-auto mb-3 group-hover:scale-110 transition-transform" />
+                  <div className="text-3xl font-bold text-white mb-1">
+                    32000+
+                  </div>
+                  <div className="text-sm text-gray-300">Units Shipped</div>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-red-400/50 transition-all duration-500 hover:scale-105 group">
+                <div className="text-center">
+                  <TbTruckDelivery className="w-8 h-8 text-red-400 mx-auto mb-3 group-hover:scale-110 transition-transform" />
+                  <div className="text-3xl font-bold text-white mb-1">3+</div>
+                  <div className="text-sm text-gray-300">
+                    Years in Logistics
+                  </div>
                 </div>
               </div>
 
               <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-red-400/50 transition-all duration-500 hover:scale-105 group">
                 <div className="text-center">
                   <Users className="w-8 h-8 text-red-400 mx-auto mb-3 group-hover:scale-110 transition-transform" />
-                  <div className="text-3xl font-bold text-white mb-1">100%</div>
+                  <div className="text-3xl font-bold text-white mb-1">100+</div>
                   <div className="text-sm text-gray-300">Satisfied clients</div>
                 </div>
               </div>
 
               <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-red-400/50 transition-all duration-500 hover:scale-105 group">
                 <div className="text-center">
-                  <Star className="w-8 h-8 text-red-400 mx-auto mb-3 group-hover:scale-110 transition-transform" />
-                  <div className="text-3xl font-bold text-white mb-1">3+</div>
-                  <div className="text-sm text-gray-300">Years</div>
-                </div>
-              </div>
-
-              <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-red-400/50 transition-all duration-500 hover:scale-105 group">
-                <div className="text-center">
-                  <Clock className="w-8 h-8 text-red-400 mx-auto mb-3 group-hover:scale-110 transition-transform" />
-                  <div className="text-3xl font-bold text-white mb-1">24/7</div>
-                  <div className="text-sm text-gray-300">Response</div>
+                  <LucideCalendarCheck className="w-8 h-8 text-red-400 mx-auto mb-3 group-hover:scale-110 transition-transform" />
+                  <div className="text-3xl font-bold text-white mb-1">7</div>
+                  <div className="text-sm text-gray-300">
+                    days a week operations
+                  </div>
                 </div>
               </div>
             </div>
@@ -252,7 +264,8 @@ export default function Register() {
               <p className="text-xl text-gray-200 mb-6 leading-relaxed">
                 {/* Let Rapid Flow Fulfillment handle the technical complexities so
                 you can focus on your core business objectives. */}
-                 Leave the logistics to Rapid Flow Fulfillment, and concentrate on what matters most—growing your business.
+                Leave the logistics to Rapid Flow Fulfillment, and concentrate
+                on what matters most—growing your business.
               </p>
               {/* <Button
                 size="lg"
@@ -438,95 +451,156 @@ export default function Register() {
                           <SelectValue placeholder="Select the service you need" />
                         </SelectTrigger>
                         <SelectContent className="bg-white border-gray-200 shadow-xl rounded-xl">
-                          <SelectItem
+                          {/* <SelectItem
                             value="ecommerce-platform"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
                             🛒 ECommerce Platform
-                          </SelectItem>
+                          </SelectItem> */}
 
                           <SelectItem
                             value="amazon"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
-                            📦 Amazon Integration
+                            <div className="flex items-center gap-2">
+                              <div>
+                                {" "}
+                                <FaAmazon />{" "}
+                              </div>
+                              <div>Amazon</div>
+                            </div>
                           </SelectItem>
 
                           <SelectItem
                             value="bigcommerce"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
-                            🏪 BigCommerce
+                            <div className="flex items-center gap-2">
+                              <div>
+                                <SiBigcommerce />
+                              </div>
+                              <div>BigCommerce</div>
+                            </div>
                           </SelectItem>
 
                           <SelectItem
                             value="magento"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
-                            🔧 Magento
+                            <div className="flex items-center gap-2">
+                              <div>
+                                <FaMagento />
+                              </div>
+                              <div>Magento</div>
+                            </div>
                           </SelectItem>
 
-                          <SelectItem
+                          {/* <SelectItem
                             value="other"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
                             ⚡ Custom Solution
-                          </SelectItem>
+                          </SelectItem> */}
 
-                          <SelectItem
+                          {/* <SelectItem
                             value="salesforce"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
                             ☁️ Salesforce
-                          </SelectItem>
+                          </SelectItem> */}
 
                           <SelectItem
                             value="shopify"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
-                            🛍️ Shopify
+                            <div className="flex items-center gap-2">
+                              <div>
+                                {" "}
+                                <FaShopify />{" "}
+                              </div>
+                              <div>Shopify</div>
+                            </div>
                           </SelectItem>
 
-                          <SelectItem
+                          {/* <SelectItem
                             value="square"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
                             🧾 Square
-                          </SelectItem>
+                          </SelectItem> */}
 
-                          <SelectItem
+                          {/* <SelectItem
                             value="squarespace"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
                             🌐 Squarespace
-                          </SelectItem>
+                          </SelectItem> */}
 
                           <SelectItem
                             value="tiktok"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
-                            🎵 TikTok
+                            <div className="flex items-center gap-2">
+                              <div>
+                                {" "}
+                                <FaTiktok />{" "}
+                              </div>
+                              <div>TikTok</div>
+                            </div>
                           </SelectItem>
 
                           <SelectItem
                             value="walmart"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
-                            🛒 Walmart
+                            <div className="flex items-center gap-2">
+                              <div>
+                                {" "}
+                                <TbBrandWalmart />{" "}
+                              </div>
+                              <div>Walmart</div>
+                            </div>
                           </SelectItem>
 
-                          <SelectItem
+                          {/* <SelectItem
                             value="wix"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
                             🌟 Wix
-                          </SelectItem>
+                          </SelectItem> */}
 
                           <SelectItem
                             value="woocommerce"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
-                            🔌 WooCommerce
+                            <div className="flex items-center gap-2">
+                              <div className="font-bold text-gray-600 text-lg">
+                                w
+                              </div>
+                              <div>WooCommerce</div>
+                            </div>
+                          </SelectItem>
+                          <SelectItem
+                            value="woocommerce"
+                            className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
+                          >
+                            <div className="flex items-center gap-2">
+                              <div className="font-bold text-gray-600 text-lg">
+                                e
+                              </div>
+                              <div>eBay</div>
+                            </div>
+                          </SelectItem>
+                          <SelectItem
+                            value="woocommerce"
+                            className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
+                          >
+                            <div className="flex items-center gap-2">
+                              <div>
+                                <FaBoltLightning />
+                              </div>
+                              <div> Custom Solution (Others)</div>
+                            </div>
                           </SelectItem>
                         </SelectContent>
                       </Select>
@@ -556,31 +630,31 @@ export default function Register() {
                             value="500"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
-                            📊 500+ orders (Minimum Required)
+                            0 - 500+ orders (Minimum Required)
                           </SelectItem>
                           <SelectItem
                             value="500-1000"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
-                            📈 500 - 1,000 orders
+                            500 - 1,000 orders
                           </SelectItem>
                           <SelectItem
                             value="1001-5000"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
-                            🚀 1,001 - 5,000 orders
+                            1,001 - 5,000 orders
                           </SelectItem>
                           <SelectItem
                             value="5001-10k"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
-                            💼 5,001 - 10,000 orders
+                            5,001 - 10,000 orders
                           </SelectItem>
                           <SelectItem
                             value="10k+"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
-                            🏢 10,000+ orders
+                            10,000+ orders
                           </SelectItem>
                         </SelectContent>
                       </Select>
@@ -622,7 +696,7 @@ export default function Register() {
                         <span>24h response</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Handshake  className="w-4 h-4 text-yellow-500" />
+                        <Handshake className="w-4 h-4 text-yellow-500" />
                         <span>No commitment</span>
                       </div>
                     </div>
