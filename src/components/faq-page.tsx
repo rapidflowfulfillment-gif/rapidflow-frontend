@@ -17,12 +17,56 @@ export default function Faq() {
   const { data: faqD = { data: [] }, isLoading, isError } = useGetFaqsQuery();
   const faqData = faqD?.data;
 
+
+
   const categories = [
     "All",
     ...(Array.from(
       new Set(faqData.map((item: any) => item.category))
     ) as string[]),
   ];
+
+  // Function to get category-specific colors
+  const getCategoryColors = (category: string, isSelected: boolean) => {
+    if (category === "All") {
+      return isSelected
+        ? "bg-gradient-to-r from-red-500 to-red-600 text-white shadow-lg shadow-red-500/25"
+        : "bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700 hover:border-red-500/50";
+    }
+    
+    switch (category) {
+      case "General":
+        return isSelected
+          ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg shadow-blue-500/25"
+          : "bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700 hover:border-blue-500/50";
+      case "Pricing":
+        return isSelected
+          ? "bg-gradient-to-r from-green-500 to-green-600 text-white shadow-lg shadow-green-500/25"
+          : "bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700 hover:border-green-500/50";
+      case "Process":
+        return isSelected
+          ? "bg-gradient-to-r from-purple-500 to-purple-600 text-white shadow-lg shadow-purple-500/25"
+          : "bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700 hover:border-purple-500/50";
+      default:
+        return isSelected
+          ? "bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-lg shadow-orange-500/25"
+          : "bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700 hover:border-orange-500/50";
+    }
+  };
+
+  // Function to get category badge colors
+  const getCategoryBadgeColors = (category: string) => {
+    switch (category) {
+      case "General":
+        return "bg-blue-500/20 text-blue-400 border-blue-500/30";
+      case "Pricing":
+        return "bg-green-500/20 text-green-400 border-green-500/30";
+      case "Process":
+        return "bg-purple-500/20 text-purple-400 border-purple-500/30";
+      default:
+        return "bg-orange-500/20 text-orange-400 border-orange-500/30";
+    }
+  };
 
   const filteredFAQs = faqData.filter((item: any) => {
     const matchesSearch =
@@ -48,7 +92,7 @@ export default function Faq() {
             <HelpCircle className="w-8 h-8 text-white" />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
-            Frequently Asked Questions
+            Frequently Asked Questions  
           </h1>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
            Find answers to common questions about our 3PL services, pricing, and processes
@@ -78,11 +122,7 @@ export default function Faq() {
                 <button
                   key={category as string}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
-                    selectedCategory === category
-                      ? "bg-gradient-to-r from-red-500 to-red-600 text-white shadow-lg shadow-red-500/25"
-                      : "bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700 hover:border-red-500/50"
-                  }`}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 transform hover:scale-105 ${getCategoryColors(category, selectedCategory === category)}`}
                 >
                   {category}
                 </button>
@@ -127,7 +167,7 @@ export default function Faq() {
                     >
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-2">
-                          <span className="px-2 py-1 bg-red-500/20 text-red-400 text-xs font-medium rounded border border-red-500/30">
+                          <span className={`px-2 py-1 text-xs font-medium rounded border ${getCategoryBadgeColors(item.category)}`}>
                             {item.category}
                           </span>
                         </div>

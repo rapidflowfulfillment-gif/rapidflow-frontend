@@ -1,3 +1,4 @@
+
 "use client";
 
 import type React from "react";
@@ -8,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FaShopify, FaTiktok, FaMagento } from "react-icons/fa";
-import { FaBoltLightning } from "react-icons/fa6";
+
 import { SiBigcommerce } from "react-icons/si";
 import {
   Select,
@@ -28,12 +29,11 @@ import {
   Handshake,
   LucideCalendarCheck,
   ShoppingBagIcon,
+  Plug,
 } from "lucide-react";
 import { FaAmazon } from "react-icons/fa";
 import { TbBrandWalmart } from "react-icons/tb";
 import { useToast } from "@/components/ui/use-toast";
-// import Image from "next/image";
-// import logo from "@/assets/logos.png";
 import { submitQuoteRequest, type QuoteFormData } from "@/lib/quote-actions";
 import { MdOutlinePrivateConnectivity } from "react-icons/md";
 
@@ -72,7 +72,6 @@ export default function Register() {
           variant: "default",
         });
 
-        // Reset form after successful submission
         setFormData({
           firstName: "",
           lastName: "",
@@ -105,7 +104,7 @@ export default function Register() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black relative overflow-hidden">
-      {/* Keep all existing background animations */}
+      {/* Background animations */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 opacity-30">
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-red-600/20 via-transparent to-red-500/20 animate-pulse"></div>
@@ -123,12 +122,6 @@ export default function Register() {
           <div className="absolute bottom-40 right-40 w-32 h-32 border border-white/10 rotate-45 animate-spin-reverse">
             <div className="w-full h-full border border-red-500/15 rotate-12"></div>
           </div>
-
-          <div className="absolute top-48 right-64 w-0 h-0 border-l-8 border-r-8 border-b-12 border-l-transparent border-r-transparent border-b-red-500/20 animate-bounce delay-300"></div>
-          <div className="absolute bottom-64 left-48 w-0 h-0 border-l-6 border-r-6 border-b-10 border-l-transparent border-r-transparent border-b-white/20 animate-bounce delay-700"></div>
-
-          <div className="absolute top-64 left-64 w-16 h-16 border-2 border-red-400/30 rounded-full animate-ping delay-1000"></div>
-          <div className="absolute bottom-48 right-56 w-12 h-12 border-2 border-white/20 rounded-full animate-ping delay-500"></div>
         </div>
 
         <div className="absolute inset-0">
@@ -176,38 +169,21 @@ export default function Register() {
             ></div>
           ))}
         </div>
-
-        <div className="absolute inset-0 bg-gradient-radial from-transparent via-black/10 to-black/30"></div>
       </div>
+
+      
 
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 py-8 relative z-10 mt-14">
-        {/* Enhanced Logo Section */}
-        <div className="mb-12 text-center relative">
-          {/* logo */}
-          {/* <div className="inline-block relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-red-600/20 blur-2xl rounded-full animate-pulse"></div>
-            <div className="relative bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-2xl border border-white/30">
-              <Image
-                className="w-[280px] h-[140px] object-contain"
-                src={logo}
-                width={280}
-                height={140}
-                alt="Rapid Flow Fulfillment Services Logo"
-              />
-            </div>
-          </div> */}
-        </div>
-
         <div className="grid lg:grid-cols-5 gap-8 items-start">
-          {/* Enhanced Left Content - 3 columns */}
+          {/* Left Content */}
           <div className="lg:col-span-3 space-y-8">
-            {/* Simplified Hero Section */}
+            {/* Hero Section */}
             <div className="text-center lg:text-left space-y-8">
               <h1 className="text-6xl lg:text-7xl font-black text-white leading-tight drop-shadow-2xl">
-                Rapid Flow
+                <span className=" decoration-red-400 decoration-4">Rapid Flow</span>
                 <br />
-                <span className="text-4xl lg:text-5xl text-red-400">
+                <span className="text-4xl lg:text-5xl text-red-400 decoration-red-400 decoration-4">
                   Fulfillment
                 </span>
               </h1>
@@ -220,13 +196,13 @@ export default function Register() {
               </p>
             </div>
 
-            {/* Enhanced Stats Grid */}
+            {/* Stats Grid */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-red-400/50 transition-all duration-500 hover:scale-105 group">
                 <div className="text-center">
                   <FiBox className="w-8 h-8 text-red-400 mx-auto mb-3 group-hover:scale-110 transition-transform" />
                   <div className="text-3xl font-bold text-white mb-1">
-                    32000+
+                    32,000+
                   </div>
                   <div className="text-sm text-gray-300">Units Shipped</div>
                 </div>
@@ -264,22 +240,40 @@ export default function Register() {
             {/* Call to Action */}
             <div className="bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/20 text-center">
               <p className="text-xl text-gray-200 mb-6 leading-relaxed">
-                {/* Let Rapid Flow Fulfillment handle the technical complexities so
-                you can focus on your core business objectives. */}
                 Leave the logistics to Rapid Flow Fulfillment, and concentrate
                 on what matters most—growing your business.
               </p>
-              {/* <Button
-                size="lg"
-                className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold px-12 py-6 rounded-2xl transition-all shadow-2xl hover:shadow-red-500/50 hover:scale-110 border border-red-400/50 text-lg group"
-              >
-                +
-                <ArrowRight className="w-6 h-6 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button> */}
+            </div>
+
+            {/* Bottom section with enhanced styling */}
+            <div className="bg-gradient-to-r from-red-500/10 to-red-600/10 backdrop-blur-xl rounded-2xl p-8 border border-red-400/30 text-center">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <Sparkles className="w-6 h-6 text-red-400" />
+                <h3 className="text-2xl font-bold text-white">Ready to Scale?</h3>
+                <Sparkles className="w-6 h-6 text-red-400" />
+              </div>
+              <p className="text-gray-300 mb-6">
+                Join hundreds of successful businesses that trust Rapid Flow Fulfillment
+                with their logistics operations.
+              </p>
+              <div className="flex justify-center items-center gap-4 text-sm text-gray-400">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-400" />
+                  <span>24/7 Support</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-400" />
+                  <span>Scalable Solutions</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-400" />
+                  <span>Expert Team</span>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Enhanced Form - 2 columns */}
+          {/* Form */}
           <div id="quote-form" className="lg:col-span-2">
             <div className="sticky top-8">
               <Card className="bg-white/95 backdrop-blur-xl shadow-2xl border-0 overflow-hidden rounded-3xl">
@@ -453,22 +447,12 @@ export default function Register() {
                           <SelectValue placeholder="Select the service you need" />
                         </SelectTrigger>
                         <SelectContent className="bg-white border-gray-200 shadow-xl rounded-xl">
-                          {/* <SelectItem
-                            value="ecommerce-platform"
-                            className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
-                          >
-                            🛒 ECommerce Platform
-                          </SelectItem> */}
-
                           <SelectItem
                             value="amazon"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
                             <div className="flex items-center gap-2">
-                              <div>
-                                {" "}
-                                <FaAmazon />{" "}
-                              </div>
+                              <FaAmazon />
                               <div>Amazon</div>
                             </div>
                           </SelectItem>
@@ -478,9 +462,7 @@ export default function Register() {
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
                             <div className="flex items-center gap-2">
-                              <div>
-                                <SiBigcommerce />
-                              </div>
+                              <SiBigcommerce />
                               <div>BigCommerce</div>
                             </div>
                           </SelectItem>
@@ -490,63 +472,27 @@ export default function Register() {
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
                             <div className="flex items-center gap-2">
-                              <div>
-                                <FaMagento />
-                              </div>
+                              <FaMagento />
                               <div>Magento</div>
                             </div>
                           </SelectItem>
-
-                          {/* <SelectItem
-                            value="other"
-                            className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
-                          >
-                            ⚡ Custom Solution
-                          </SelectItem> */}
-
-                          {/* <SelectItem
-                            value="salesforce"
-                            className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
-                          >
-                            ☁️ Salesforce
-                          </SelectItem> */}
 
                           <SelectItem
                             value="shopify"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
                             <div className="flex items-center gap-2">
-                              <div>
-                                {" "}
-                                <FaShopify />{" "}
-                              </div>
+                              <FaShopify />
                               <div>Shopify</div>
                             </div>
                           </SelectItem>
-
-                          {/* <SelectItem
-                            value="square"
-                            className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
-                          >
-                            🧾 Square
-                          </SelectItem> */}
-
-                          {/* <SelectItem
-                            value="squarespace"
-                            className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
-                          >
-                            🌐 Squarespace
-                          </SelectItem> */}
 
                           <SelectItem
                             value="tiktok"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
                             <div className="flex items-center gap-2">
-                              <div>
-                                {" "}
-                                <FaTiktok />{" "}
-                              </div>
+                              <FaTiktok />
                               <div>TikTok</div>
                             </div>
                           </SelectItem>
@@ -556,44 +502,30 @@ export default function Register() {
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
                             <div className="flex items-center gap-2">
-                              <div>
-                                {" "}
-                                <TbBrandWalmart />{" "}
-                              </div>
+                              <TbBrandWalmart />
                               <div>Walmart</div>
                             </div>
                           </SelectItem>
+
                           <SelectItem
-                            value="walmart"
+                            value="private-label"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
                             <div className="flex items-center gap-2">
-                              <div>
-                                {" "}
-                                <MdOutlinePrivateConnectivity />{" "}
-                              </div>
+                              <MdOutlinePrivateConnectivity />
                               <div>Private Label</div>
                             </div>
                           </SelectItem>
+
                           <SelectItem
-                            value="walmart"
+                            value="retail"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
                             <div className="flex items-center gap-2">
-                              <div>
-                                {" "}
-                                <ShoppingBagIcon className="w-4 h-4 text-black" />{" "}
-                              </div>
+                              <ShoppingBagIcon className="w-4 h-4" />
                               <div>Retail</div>
                             </div>
                           </SelectItem>
-
-                          {/* <SelectItem
-                            value="wix"
-                            className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
-                          >
-                            🌟 Wix
-                          </SelectItem> */}
 
                           <SelectItem
                             value="woocommerce"
@@ -606,8 +538,9 @@ export default function Register() {
                               <div>WooCommerce</div>
                             </div>
                           </SelectItem>
+
                           <SelectItem
-                            value="woocommerce"
+                            value="ebay"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
                             <div className="flex items-center gap-2">
@@ -617,15 +550,14 @@ export default function Register() {
                               <div>eBay</div>
                             </div>
                           </SelectItem>
+
                           <SelectItem
-                            value="woocommerce"
+                            value="custom"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
                             <div className="flex items-center gap-2">
-                              <div>
-                                <FaBoltLightning />
-                              </div>
-                              <div> Custom Solution (Others)</div>
+                              <Plug className="w-4 h-4" />
+                              <div>Custom Solution (Others)</div>
                             </div>
                           </SelectItem>
                         </SelectContent>
@@ -656,7 +588,7 @@ export default function Register() {
                             value="500"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
-                            0 - 500+ orders
+                            1- 500 orders
                           </SelectItem>
                           <SelectItem
                             value="500-1000"
