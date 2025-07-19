@@ -74,7 +74,7 @@ export default function OurVisionSection() {
 
               <h2 className="text-7xl md:text-9xl font-black text-white mb-12 leading-tight">
                 Our{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-pink-500 to-red-600 drop-shadow-2xl animate-pulse">
+                <span className="text-transparent bg-clip-text bg-red-600 drop-shadow-2xl ">
                   Services
                 </span>
               </h2>

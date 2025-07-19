@@ -1,13 +1,12 @@
 "use client";
 
-import { Instagram, Linkedin, Facebook, Indent } from "lucide-react";
-import { SiTiktok } from "react-icons/si";
 import Image from "next/image";
 import logo from "@/assets/logoff.png";
 import Link from "next/link";
 import bbb from "@/assets/bbb.jpeg";
 import { useEffect, useState } from "react";
 import { useGetContactQuery } from "@/redux/api/contactApi";
+import { FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 
 // Define proper TypeScript interfaces
 interface SocialMediaItem {
@@ -66,18 +65,21 @@ export default function Footer() {
 
   // Function to get the appropriate icon for social media platform
   const getSocialIcon = (name: string): JSX.Element => {
+
+
+  
     const platformName = name.toLowerCase();
     switch (platformName) {
-      case "instagram":
-        return <Instagram className="w-5 h-5" />;
-      case "tiktok":
-        return <SiTiktok className="w-5 h-5" />;
+      case "instragram":
+        return <FaInstagram className="w-5 h-5" />;
+      // case "whatsApp":
+      //   return <FaWhatsapp className="w-5 h-5" />;
       case "linkedin":
-        return <Linkedin className="w-5 h-5" />;
+        return <FaLinkedin className="w-5 h-5" />;
       case "facebook":
-        return <Facebook className="w-5 h-5" />;
+        return <FaFacebook className="w-5 h-5" />;
       default:
-        return <Indent className="w-5 h-5" />;
+        return <FaWhatsapp className="w-5 h-5" />;
     }
   };
 
@@ -261,12 +263,12 @@ export default function Footer() {
 
           {/* Social Media Icons */}
           <div className="flex flex-col items-center md:items-end">
-            {contactData?.socialmedia && contactData.socialmedia.length > 0 && (
+            {contactData?.socialmedia && contactData?.socialmedia?.length > 0 && (
               <div className="flex justify-center items-center gap-4 mb-3">
-                {contactData.socialmedia.map((item: SocialMediaItem, index: number) => (
+                {contactData?.socialmedia?.map((item: SocialMediaItem, index: number) => (
                   <a
                     key={`${item.name}-${index}`}
-                    href={item.link}
+                    href={item?.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group relative p-2 rounded-full bg-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110"
