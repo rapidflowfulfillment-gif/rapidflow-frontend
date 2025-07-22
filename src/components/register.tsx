@@ -194,99 +194,98 @@ export default function Register() {
           {!isLoading &&
             isSuccess &&
             data?.data?.map((item: any, index: number) => (
-              <>
-                <div key={index + 1} className="lg:col-span-3 space-y-8">
-                  {/* Hero Section */}
-                  <div className="text-center lg:text-left space-y-8">
-                    <h1 className="text-6xl lg:text-7xl font-black text-white leading-tight drop-shadow-2xl">
-                      <span className=" decoration-red-400 decoration-4">
-                        {item?.title.split(" ")[0]} {item?.title.split(" ")[1]}
-                      </span>
-                      <br />
-                      <span className="text-4xl lg:text-5xl text-red-400 decoration-red-400 decoration-4">
-                        {item?.title.split(" ")[2]}
-                      </span>
-                    </h1>
+              <div key={item.id || index} className="lg:col-span-3 space-y-8">
+                {/* Hero Section */}
+                <div className="text-center lg:text-left space-y-8">
+                  <h1 className="text-6xl lg:text-7xl font-black text-white leading-tight drop-shadow-2xl">
+                    <span className=" decoration-red-400 decoration-4">
+                      {item?.title.split(" ")[0]} {item?.title.split(" ")[1]}
+                    </span>
+                    <br />
+                    <span className="text-4xl lg:text-5xl text-red-400 decoration-red-400 decoration-4">
+                      {item?.title.split(" ")[2]}
+                    </span>
+                  </h1>
 
-                    <p className="text-2xl text-gray-300 leading-relaxed font-light max-w-3xl">
-                      {item?.description}
-                    </p>
-                  </div>
+                  <p className="text-2xl text-gray-300 leading-relaxed font-light max-w-3xl">
+                    {item?.description}
+                  </p>
+                </div>
 
-                  {/* Stats Grid */}
-                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-red-400/50 transition-all duration-500 hover:scale-105 group">
-                      <div className="text-center">
-                        <FiBox className="w-8 h-8 text-red-400 mx-auto mb-3 group-hover:scale-110 transition-transform" />
-                        <div className="text-3xl font-bold text-white mb-1">
-                          {item?.units_shipped}
-                        </div>
-                        <div className="text-sm text-gray-300">
-                          {item?.units_shipped_title}
-                        </div>
+                {/* Stats Grid */}
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                  <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-red-400/50 transition-all duration-500 hover:scale-105 group">
+                    <div className="text-center">
+                      <FiBox className="w-8 h-8 text-red-400 mx-auto mb-3 group-hover:scale-110 transition-transform" />
+                      <div className="text-3xl font-bold text-white mb-1">
+                        {item?.units_shipped}
                       </div>
-                    </div>
-
-                    <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-red-400/50 transition-all duration-500 hover:scale-105 group">
-                      <div className="text-center">
-                        <TbTruckDelivery className="w-8 h-8 text-red-400 mx-auto mb-3 group-hover:scale-110 transition-transform" />
-                        <div className="text-3xl font-bold text-white mb-1">
-                          {item?.years}
-                        </div>
-                        <div className="text-sm text-gray-300">
-                          {item?.years_title}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-red-400/50 transition-all duration-500 hover:scale-105 group">
-                      <div className="text-center">
-                        <Users className="w-8 h-8 text-red-400 mx-auto mb-3 group-hover:scale-110 transition-transform" />
-                        <div className="text-3xl font-bold text-white mb-1">
-                          {item?.client_satisfied}
-                        </div>
-                        <div className="text-sm text-gray-300">
-                          {item?.client_satisfied_title}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-red-400/50 transition-all duration-500 hover:scale-105 group">
-                      <div className="text-center">
-                        <LucideCalendarCheck className="w-8 h-8 text-red-400 mx-auto mb-3 group-hover:scale-110 transition-transform" />
-                        <div className="text-3xl font-bold text-white mb-1">
-                          {item?.week_day}
-                        </div>
-                        <div className="text-sm text-gray-300">
-                          {item?.week_day_title}
-                        </div>
+                      <div className="text-sm text-gray-300">
+                        {item?.units_shipped_title}
                       </div>
                     </div>
                   </div>
 
-                  {/* Call to Action */}
-                  <div className="bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/20 text-center">
-                    <p className="text-xl text-gray-200 mb-6 leading-relaxed">
-                      {item?.para}
-                    </p>
-                    <div className="flex justify-center items-center gap-4 text-sm text-gray-400">
-                      <div className="flex items-center gap-2">
-                        <CheckCircle className="w-4 h-4 text-green-400" />
-                        <span> {item?.support}</span>
+                  <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-red-400/50 transition-all duration-500 hover:scale-105 group">
+                    <div className="text-center">
+                      <TbTruckDelivery className="w-8 h-8 text-red-400 mx-auto mb-3 group-hover:scale-110 transition-transform" />
+                      <div className="text-3xl font-bold text-white mb-1">
+                        {item?.years}
                       </div>
-                      <div className="flex items-center gap-2">
-                        <CheckCircle className="w-4 h-4 text-green-400" />
-                        <span>{item?.solutions}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <CheckCircle className="w-4 h-4 text-green-400" />
-                        <span>{item?.team}</span>
+                      <div className="text-sm text-gray-300">
+                        {item?.years_title}
                       </div>
                     </div>
                   </div>
 
-                  {/* Bottom section with enhanced styling */}
-                  {/* <div className="bg-gradient-to-r from-red-500/10 to-red-600/10 backdrop-blur-xl rounded-2xl p-8 border border-red-400/30 text-center">
+                  <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-red-400/50 transition-all duration-500 hover:scale-105 group">
+                    <div className="text-center">
+                      <Users className="w-8 h-8 text-red-400 mx-auto mb-3 group-hover:scale-110 transition-transform" />
+                      <div className="text-3xl font-bold text-white mb-1">
+                        {item?.client_satisfied}
+                      </div>
+                      <div className="text-sm text-gray-300">
+                        {item?.client_satisfied_title}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-red-400/50 transition-all duration-500 hover:scale-105 group">
+                    <div className="text-center">
+                      <LucideCalendarCheck className="w-8 h-8 text-red-400 mx-auto mb-3 group-hover:scale-110 transition-transform" />
+                      <div className="text-3xl font-bold text-white mb-1">
+                        {item?.week_day}
+                      </div>
+                      <div className="text-sm text-gray-300">
+                        {item?.week_day_title}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Call to Action */}
+                <div className="bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/20 text-center">
+                  <p className="text-xl text-gray-200 mb-6 leading-relaxed">
+                    {item?.para}
+                  </p>
+                  <div className="flex justify-center items-center gap-4 text-sm text-gray-400">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-400" />
+                      <span> {item?.support}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-400" />
+                      <span>{item?.solutions}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-400" />
+                      <span>{item?.team}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom section with enhanced styling */}
+                {/* <div className="bg-gradient-to-r from-red-500/10 to-red-600/10 backdrop-blur-xl rounded-2xl p-8 border border-red-400/30 text-center">
                     <div className="flex items-center justify-center gap-3 mb-4">
                       <Sparkles className="w-6 h-6 text-red-400" />
                       <h3 className="text-2xl font-bold text-white">
@@ -312,8 +311,7 @@ export default function Register() {
                       </div>
                     </div>
                   </div> */}
-                </div>
-              </>
+              </div>
             ))}
 
           {/* Form */}

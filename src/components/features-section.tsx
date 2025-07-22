@@ -23,7 +23,7 @@ export default function Features() {
           <div className="inline-flex items-center gap-3 mb-6 bg-gradient-to-r from-red-500/10 to-red-600/10 backdrop-blur-sm px-8 py-4 rounded-full border border-red-200 shadow-xl">
             {/* <Sparkles className="w-6 h-6 text-red-600 animate-pulse" /> */}
             <span className="text-red-600 font-bold text-xl">
-              Premium Fulfillment
+              {home?.premium_fulfillment || "Premium Fulfillment"}
             </span>
             <Crown className="w-6 h-6 text-red-600 animate-bounce" />
           </div>
@@ -55,11 +55,11 @@ export default function Features() {
                       <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
                         <Rocket className="w-8 h-8 text-white" />
                       </div>
-                      <div className="bg-green-100 px-4 py-2 rounded-full">
+                      {/* <div className="bg-green-100 px-4 py-2 rounded-full">
                         <span className="text-green-700 font-bold text-sm">
                           FASTEST IN INDUSTRY
                         </span>
-                      </div>
+                      </div> */}
                     </div>
 
                     <h3 className="text-4xl md:text-5xl font-bold text-black group-hover:text-red-600 transition-colors duration-300">
@@ -77,7 +77,7 @@ export default function Features() {
                           {home?.fastestCardHours || "48"}
                         </div>
                         <div className="text-xl font-semibold text-gray-700">
-                          Hours Maximum
+                          {home?.hours_max || "Hours Max"}
                         </div>
                         <div className="w-full bg-red-100 rounded-full h-3">
                           <div className="bg-gradient-to-r from-red-500 to-red-600 h-3 rounded-full w-full animate-pulse"></div>
@@ -167,7 +167,7 @@ export default function Features() {
               <div className="inline-flex items-center gap-3 mb-8 bg-red-600/20 backdrop-blur-sm px-8 py-4 rounded-full border border-red-500/30">
                 <Users className="w-6 h-6 text-red-400 animate-pulse" />
                 <span className="text-red-400 font-bold text-xl">
-                  Join 100+ Elite Businesses
+                  {home?.join_businesses || "Join Thousands of Happy Customers"}
                 </span>
                 {/* <Crown className="w-6 h-6 text-red-400 animate-bounce" /> */}
               </div>
@@ -189,7 +189,9 @@ export default function Features() {
                     <div className="text-2xl font-bold text-red-400">
                       {home?.fastestCardHours}
                     </div>
-                    <div className="text-white font-semibold">Hours Max</div>
+                    <div className="text-white font-semibold">
+                      {home?.hours_max || "Hours Max"}
+                    </div>
                   </div>
 
                   <div className="text-center group hover:scale-105 transition-all duration-300">
@@ -199,7 +201,9 @@ export default function Features() {
                     <div className="text-2xl font-bold text-green-400">
                       {home?.taxCardPrice || "0"}
                     </div>
-                    <div className="text-white font-semibold">Sales Tax</div>
+                    <div className="text-white font-semibold">
+                      {home?.sale_tax || "Sales Tax"}
+                    </div>
                   </div>
 
                   <div className="text-center group hover:scale-105 transition-all duration-300">
@@ -209,7 +213,9 @@ export default function Features() {
                     <div className="text-2xl font-bold text-blue-400">
                       {home?.receiveCardServiceTime}
                     </div>
-                    <div className="text-white font-semibold">hr receiving</div>
+                    <div className="text-white font-semibold">
+                      {home?.receive_service_time || "Hr receiving"}
+                    </div>
                   </div>
                 </div>
               </div>
