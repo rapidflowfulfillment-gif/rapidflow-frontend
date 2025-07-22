@@ -93,7 +93,7 @@ export default function ProcessSection() {
         <div className="text-center mb-16">
           <div className="inline-block bg-red-500/10 backdrop-blur-sm px-6 py-3 rounded-full border border-red-500/20 mb-6">
             <span className="text-red-600 font-semibold text-sm uppercase tracking-wider">
-              What Sets Us Apart
+              {data?.tag || "What Sets Us Apart"}
             </span>
           </div>
           <h2 className="text-4xl md:text-6xl font-black text-red-600 mb-6">

@@ -68,14 +68,18 @@ export default function OurVisionSection() {
               <div className="inline-flex items-center gap-4 bg-gradient-to-r from-red-500/20 to-pink-500/20 backdrop-blur-xl px-10 py-5 rounded-full border-2 border-red-500/40 mb-12 shadow-2xl shadow-red-500/30 hover:shadow-red-500/50 transition-all duration-300">
                 <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
                 <span className="text-red-400 font-bold text-xl uppercase tracking-wider">
-                  {vision?.title || "Our Vision"}
+                  {vision?.tag || "What We Offer"}
                 </span>
               </div>
 
+              {/* <h2 className="text-4xl md:text-6xl font-black text-red-600 mb-12 leading-tight">
+                {vision?.title || "Our Vision"}{" "}
+              </h2> */}
+
               <h2 className="text-4xl md:text-6xl font-black text-white mb-12 leading-tight">
-                Our{" "}
+                {vision?.title.split(" ").slice(0, 1).join(" ") || "Our"}{" "}
                 <span className="text-transparent bg-clip-text bg-red-600 drop-shadow-2xl ">
-                  Services
+                  {vision?.title.split(" ").slice(1).join(" ") || "Services"}
                 </span>
               </h2>
 
