@@ -13,8 +13,7 @@ const quoteFormSchema = z.object({
   website: z.string().optional(),
   serviceType: z.string().min(1, "Service type is required"),
   budget: z.string().min(1, "Budget range is required"),
-
-   customService: z.string()
+  customService: z.string(),
 });
 
 export type QuoteFormData = z.infer<typeof quoteFormSchema>;
@@ -26,7 +25,7 @@ export async function submitQuoteRequest(formData: QuoteFormData) {
 
     // Owner's email address
     const ownerEmail =
-      process.env.CONTACT_MAIL_ADDRESS || "ahraju3904@gmail.com";
+      process.env.CONTACT_MAIL_ADDRESS || "ahraju2003@outlook.com";
 
     // Email subject
     const subject = `New Quote Request from ${validatedData.firstName} ${validatedData.lastName}`;

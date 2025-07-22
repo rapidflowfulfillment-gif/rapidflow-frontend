@@ -1,49 +1,49 @@
-import nodemailer from "nodemailer"
-import config from "./config"
+import nodemailer from "nodemailer";
+import config from "./config";
 
 interface ApiError extends Error {
-  statusCode: number
+  statusCode: number;
 }
 
 class CustomApiError extends Error implements ApiError {
-  statusCode: number
+  statusCode: number;
 
   constructor(statusCode: number, message: string) {
-    super(message)
-    this.statusCode = statusCode
-    this.name = "ApiError"
+    super(message);
+    this.statusCode = statusCode;
+    this.name = "ApiError";
   }
 }
 
 const emailSender = async (subject: string, email: string, html: string) => {
   const transporter = nodemailer.createTransport({
-    service: "gmail",
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false, // true for 465, false for other ports
-    auth: {
-      user: config.emailSender.email,
-      pass: config.emailSender.app_pass,
-    },
-  })
+    host: "smtp.office365.com",
+  port: 587,
+  secure: false,
+  auth: {
+    type: "OAuth2",
+    user: "ahraju2003@outlook.com",
+    clientId: "3ff99b34-8d4e-4593-a6d3-cc30bef2fb4f",
+    clientSecret: "7f04fd1e-bdd9-40b5-9e8c-dd57a19dd8ed",
+    refreshToken: "YOUR_REFRESH_TOKEN",
+    accessToken: "YOUR_ACCESS_TOKEN", // optional if refresh token is working
+  },
+  });
 
-  const emailTransport = transporter
   const mailOptions = {
     from: `"Rapid Flow" <${config.emailSender.email}>`,
     to: email,
     subject,
     html,
-  }
+  };
 
-  // Send the email
   try {
-    const info = await emailTransport.sendMail(mailOptions)
-    // console.log("Email sent: " + info.response);
-    return info
+    const info = await transporter.sendMail(mailOptions);
+    return info;
   } catch (error) {
-    console.error("Error sending email:", error)
-    throw new CustomApiError(500, "Error sending email")
+    console.error("Error sending email:", error);
+    throw new CustomApiError(500, "Error sending email");
   }
-}
+};
 
-export default emailSender
+export default emailSender;
