@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FaShopify, FaTiktok, FaMagento } from "react-icons/fa";
+import { MdBolt } from "react-icons/md";
 
 import { SiBigcommerce } from "react-icons/si";
 import {
@@ -29,7 +30,6 @@ import {
   Handshake,
   LucideCalendarCheck,
   ShoppingBagIcon,
-  Plug,
 } from "lucide-react";
 import { FaAmazon } from "react-icons/fa";
 import { TbBrandWalmart } from "react-icons/tb";
@@ -268,7 +268,6 @@ export default function Register() {
                   <div className="bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/20 text-center">
                     <p className="text-xl text-gray-200 mb-6 leading-relaxed">
                       {item?.para}
-                 
                     </p>
                     <div className="flex justify-center items-center gap-4 text-sm text-gray-400">
                       <div className="flex items-center gap-2">
@@ -600,7 +599,7 @@ export default function Register() {
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
                             <div className="flex items-center gap-2">
-                              <Plug className="w-4 h-4" />
+                              <MdBolt className="w-4 h-4" />
                               <div>Custom Solution (Others)</div>
                             </div>
                           </SelectItem>

@@ -10,10 +10,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import Link from "next/link";
+
 import ContactModal from "./common/ContactModal";
 import Image from "next/image";
 import logo from "@/assets/logoff.png";
+import Link from "next/link";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -53,23 +54,28 @@ export default function Navbar() {
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="flex items-center justify-between w-full">
             {/* Left: Logo */}
-            <div className="flex-shrink-0">
-              <div className="flex items-center space-x-3 group">
-                <div className="relative">
-                  <Image
-                    className="rounded-sm shadow-lg group-hover:scale-110 transition-transform duration-300"
-                    src={logo}
-                    width={50}
-                    height={50}
-                    alt="Logo"
-                  />
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-red-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <Link href="/">
+              <div className="flex-shrink-0">
+                <div className="flex items-center space-x-3 group">
+                  <div className="relative">
+                    <div className="cursor-pointer">
+                      <Image
+                        className="rounded-sm shadow-lg group-hover:scale-110 transition-transform duration-300"
+                        src={logo}
+                        width={50}
+                        height={50}
+                        alt="Logo"
+                      />
+                    </div>
+
+                    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-red-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                  <p className="text-lg font-bold text-gray-900">
+                    Rapid Flow Fulfillment
+                  </p>
                 </div>
-                <p className="text-lg font-bold text-gray-900">
-                  Rapid Flow Fulfillment
-                </p>
               </div>
-            </div>
+            </Link>
 
             {/* Center: Navigation Links */}
             <div className="hidden md:flex items-center space-x-8 justify-center flex-1">

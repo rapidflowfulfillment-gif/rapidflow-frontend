@@ -1,11 +1,12 @@
 "use client";
 
-import { Truck, CheckCircle, Rocket, Globe, Users, Crown } from "lucide-react";
+import { Truck, CheckCircle, Rocket, Users, Crown } from "lucide-react";
 // import Link from "next/link";
 import ContactModal from "./common/ContactModal";
 import { useState } from "react";
 import { useGetHomesQuery } from "@/redux/api/homeApi";
 import { FaPlug } from "react-icons/fa";
+import Link from "next/link";
 
 export default function Features() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,11 +28,13 @@ export default function Features() {
             <Crown className="w-6 h-6 text-red-600 animate-bounce" />
           </div>
 
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-black mb-6 leading-tight">
-            {home?.title?.split(" ").slice(0, -2).join(" ")}{" "}
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+            <span className="">
+              {home?.title?.split(" ").slice(0, 3).join(" ")}{" "}
+            </span>
             <span className="text-red-600 relative inline-block">
-              {home?.title?.split(" ").slice(-2).join(" ")}
-              <div className="absolute -bottom-3 left-0 right-0 h-3 bg-gradient-to-r from-red-500 to-red-600 rounded-full animate-pulse"></div>
+              {home?.title?.split(" ").slice(3).join(" ")}
+              <div className="absolute -bottom-2 left-0 right-0 h-2 bg-gradient-to-r from-red-500 to-red-600 rounded-full animate-pulse"></div>
             </span>
           </h2>
 
@@ -115,7 +118,7 @@ export default function Features() {
                         </span> */}
                       </div>
                       <div className="text-2xl font-bold text-green-600">
-                        ${home?.taxCardPrice || 0}
+                        {home?.taxCardPrice || 0}
                       </div>
                     </div>
                   </div>
@@ -191,10 +194,10 @@ export default function Features() {
 
                   <div className="text-center group hover:scale-105 transition-all duration-300">
                     <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:animate-spin">
-                      <Globe className="w-8 h-8 text-white" />
+                      <FaPlug className="w-8 h-8 text-white" />
                     </div>
                     <div className="text-2xl font-bold text-green-400">
-                      {home?.taxCardPrice || "0"}%
+                      {home?.taxCardPrice || "0"}
                     </div>
                     <div className="text-white font-semibold">Sales Tax</div>
                   </div>
@@ -212,14 +215,14 @@ export default function Features() {
               </div>
 
               <div className="mt-20">
-                {/* <Link href="#">
+                <Link href="#">
                   <button
                     onClick={() => setIsModalOpen(true)}
                     className="group bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold px-8 py-4 rounded-2xl text-xl transition-all duration-300 shadow-2xl hover:shadow-red-500/40 hover:scale-105 flex items-center gap-3 mx-auto"
                   >
                     <span>Get Started Today</span>
                   </button>
-                </Link> */}
+                </Link>
               </div>
             </div>
           </div>
