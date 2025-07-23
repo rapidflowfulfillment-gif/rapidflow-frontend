@@ -55,11 +55,11 @@ export default function Features() {
                       <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
                         <Rocket className="w-8 h-8 text-white" />
                       </div>
-                      {/* <div className="bg-green-100 px-4 py-2 rounded-full">
+                      <div className="bg-green-100 px-4 py-2 rounded-full">
                         <span className="text-green-700 font-bold text-sm">
                           FASTEST IN INDUSTRY
                         </span>
-                      </div> */}
+                      </div>
                     </div>
 
                     <h3 className="text-4xl md:text-5xl font-bold text-black group-hover:text-red-600 transition-colors duration-300">

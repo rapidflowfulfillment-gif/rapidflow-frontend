@@ -129,7 +129,7 @@ export default function Navbar() {
                         desc: "Streamlined from start to finish.",
                       },
                       {
-                        href: "/about#our-vision",
+                        href: "/about#our-services",
                         icon: <FaWarehouse className="w-5 h-5 text-white" />,
                         title: " Our Services",
                         desc: "Built for every channel.",
@@ -261,7 +261,7 @@ export default function Navbar() {
                   >
                     {[
                       { href: "#our-process", label: "Our Process" },
-                      { href: "#our-vision", label: " Our Services" },
+                      { href: "#our-services", label: " Our Services" },
                       { href: "#our-mission", label: "Our Mission" },
                       // { href: "#meet-our-team", label: "Meet our team" },
                     ].map((item, idx) => (

@@ -160,7 +160,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link
-                    href="/about#our-vision"
+                    href="/about#our-services"
                     className="text-gray-700 hover:text-red-500 transition-all duration-300 font-medium flex items-center group"
                   >
                     {/* <span className="w-1.5 h-1.5 bg-red-400 rounded-full mr-3 group-hover:bg-red-500 transition-colors"></span> */}

@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import config from "./config";
+// import config from "./config";
 
 interface ApiError extends Error {
   statusCode: number;
@@ -17,17 +17,20 @@ class CustomApiError extends Error implements ApiError {
 
 const emailSender = async (subject: string, email: string, html: string) => {
   const transporter = nodemailer.createTransport({
-    host: "smtp.office365.com",
+    host: "smtp.gmail.com",
     port: 587,
     secure: false,
     auth: {
-      user: "ahraju2003@outlook.com",
-      pass: "makejsjueoxclwqs",
+      user: "rapidflowfulfillment@gmail.com",
+      pass: "tmfr tsmz nrim cuoy", // Must be App Password
+    },
+    tls: {
+      ciphers: "SSLv3",
     },
   });
 
   const mailOptions = {
-    from: `"Rapid Flow" <${config.emailSender.email}>`,
+    from: `"Rapid Flow" <rapidflowfulfillment@gmail.com>`,
     to: email,
     subject,
     html,

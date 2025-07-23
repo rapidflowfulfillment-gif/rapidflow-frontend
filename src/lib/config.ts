@@ -1,7 +1,7 @@
 const config = {
   emailSender: {
-    email: process.env.OUTLOOK || "ahraju2003@outlook.com",
-    app_pass: process.env.APP_PASS || "hxcvcriermjjkpmn",
+    email: process.env.OUTLOOK || "arapidflowfulfillment@gmail.com",
+    app_pass: process.env.APP_PASS || "tmfr tsmz nrim cuoy",
   },
 };
 

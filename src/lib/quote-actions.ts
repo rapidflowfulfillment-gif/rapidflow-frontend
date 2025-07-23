@@ -25,7 +25,7 @@ export async function submitQuoteRequest(formData: QuoteFormData) {
 
     // Owner's email address
     const ownerEmail =
-      process.env.CONTACT_MAIL_ADDRESS || "ahraju2003@outlook.com";
+      process.env.CONTACT_MAIL_ADDRESS || "rapidflowfulfillment@gmail.com";
 
     // Email subject
     const subject = `New Quote Request from ${validatedData.firstName} ${validatedData.lastName}`;

@@ -33,13 +33,12 @@ import {
 } from "lucide-react";
 import { FaAmazon } from "react-icons/fa";
 import { TbBrandWalmart } from "react-icons/tb";
-import { useToast } from "@/components/ui/use-toast";
 import { submitQuoteRequest, type QuoteFormData } from "@/lib/quote-actions";
 import { MdOutlinePrivateConnectivity } from "react-icons/md";
 import { useGetQuoteLeftQuery } from "@/redux/api/quoteleftApi";
+import Swal from "sweetalert2";
 
 export default function Register() {
-  const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState<QuoteFormData>({
     firstName: "",
@@ -81,10 +80,19 @@ export default function Register() {
       const result = await submitQuoteRequest(formData);
 
       if (result.success) {
-        toast({
-          title: "Quote Request Submitted",
-          description: "We'll get back to you within 24 hours.",
-          variant: "default",
+        await Swal.fire({
+          title: "Thank you for reaching out!",
+          text: "We will get back to you soon. – The Rapid Flow Fulfillment Team",
+          icon: "success",
+          confirmButtonText: "OK",
+          confirmButtonColor: "#dc2626",
+          background: "#ffffff",
+          color: "#374151",
+          customClass: {
+            popup: "rounded-2xl shadow-2xl",
+            title: "text-xl font-bold",
+            confirmButton: "rounded-lg px-6 py-2 font-semibold",
+          },
         });
 
         setFormData({
@@ -99,19 +107,22 @@ export default function Register() {
           budget: "",
         });
       } else {
-        toast({
-          title: "Submission Failed",
-          description:
-            result.message || "Please check your information and try again.",
-          variant: "destructive",
-        });
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error submitting form:", error);
-      toast({
+      await Swal.fire({
         title: "Something went wrong",
-        description: "Please try again later.",
-        variant: "destructive",
+        text: "Please try again later.",
+        icon: "error",
+        confirmButtonText: "OK",
+        confirmButtonColor: "#dc2626",
+        background: "#ffffff",
+        color: "#374151",
+        customClass: {
+          popup: "rounded-2xl shadow-2xl",
+          title: "text-xl font-bold",
+          confirmButton: "rounded-lg px-6 py-2 font-semibold",
+        },
       });
     } finally {
       setIsSubmitting(false);

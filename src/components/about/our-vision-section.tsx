@@ -25,7 +25,7 @@ export default function OurVisionSection() {
       { threshold: 0.1 }
     );
 
-    const section = document.getElementById("our-vision");
+    const section = document.getElementById("our-services");
     if (section) {
       observer.observe(section);
     }
@@ -35,7 +35,7 @@ export default function OurVisionSection() {
 
   return (
     <section
-      id="our-vision"
+      id="our-services"
       className="bg-gradient-to-br from-gray-900 via-black to-gray-900 py-32 px-6 relative overflow-hidden min-h-screen"
     >
       {/* Enhanced Background Effects */}
