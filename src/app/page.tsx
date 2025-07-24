@@ -5,7 +5,7 @@ import Register from "@/components/register";
 // import Testimonials from "@/components/testimonials-section";
 // import CtaSection from "@/components/cta-section";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 const HomePage = () => {
   return (
