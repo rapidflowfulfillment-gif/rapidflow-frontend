@@ -37,6 +37,7 @@ import { TbBrandWalmart } from "react-icons/tb";
 import { MdOutlinePrivateConnectivity } from "react-icons/md";
 import { useGetQuoteLeftQuery } from "@/redux/api/quoteleftApi";
 import Swal from "sweetalert2";
+import { useSendQuoteMutation } from "@/redux/api/sendQuoteApi";
 
 export default function Register() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -53,7 +54,9 @@ export default function Register() {
   });
 
   const { isLoading, data, error, isSuccess } = useGetQuoteLeftQuery({});
-  // console.log(data, "kljfk")
+
+  // send quote api
+  const [sendQuote] = useSendQuoteMutation();
 
   if (isLoading) {
     return <p> loading page .....</p>;
@@ -66,7 +69,7 @@ export default function Register() {
   // console.log(data?.data);
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData((prev:any) => ({
+    setFormData((prev: any) => ({
       ...prev,
       [field]: value,
     }));
@@ -77,37 +80,34 @@ export default function Register() {
     setIsSubmitting(true);
 
     try {
-      // const result = await submitQuoteRequest(formData);
-
-      // if (result.success) {
-      //   await Swal.fire({
-      //     title: "Thank you for reaching out!",
-      //     text: "We will get back to you soon. – The Rapid Flow Fulfillment Team",
-      //     icon: "success",
-      //     confirmButtonText: "OK",
-      //     confirmButtonColor: "#dc2626",
-      //     background: "#ffffff",
-      //     color: "#374151",
-      //     customClass: {
-      //       popup: "rounded-2xl shadow-2xl",
-      //       title: "text-xl font-bold",
-      //       confirmButton: "rounded-lg px-6 py-2 font-semibold",
-      //     },
-      //   });
-
-      //   setFormData({
-      //     firstName: "",
-      //     lastName: "",
-      //     email: "",
-      //     phone: "",
-      //     company: "",
-      //     website: "",
-      //     serviceType: "",
-      //     customService: "",
-      //     budget: "",
-      //   });
-      // } else {
-      // }
+      const result = await sendQuote(formData).unwrap();
+      if (result) {
+        await Swal.fire({
+          title: "Thank you for reaching out!",
+          text: "We will get back to you soon. – The Rapid Flow Fulfillment Team",
+          icon: "success",
+          confirmButtonText: "OK",
+          confirmButtonColor: "#dc2626",
+          background: "#ffffff",
+          color: "#374151",
+          customClass: {
+            popup: "rounded-2xl shadow-2xl",
+            title: "text-xl font-bold",
+            confirmButton: "rounded-lg px-6 py-2 font-semibold",
+          },
+        });
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          company: "",
+          website: "",
+          serviceType: "",
+          customService: "",
+          budget: "",
+        });
+      }
     } catch (error: any) {
       console.error("Error submitting form:", error);
       await Swal.fire({

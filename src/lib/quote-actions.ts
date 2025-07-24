@@ -1,4 +1,6 @@
-// // import emailSender from "@/lib/emailSender";
+
+
+// import emailSender from "@/lib/emailSender";
 // import { z } from "zod";
 
 // // Form validation schema
@@ -16,8 +18,6 @@
 
 // export type QuoteFormData = z.infer<typeof quoteFormSchema>;
 
-// /*
-// // Server-side function - commented out for client-side deployment
 // export async function submitQuoteRequest(formData: QuoteFormData) {
 //   try {
 //     // Validate form data
@@ -55,10 +55,8 @@
 //     };
 //   }
 // }
-// */
 
-// /*
-// // Email template generator - commented out as it's only needed on the server
+// // Email template generator
 // function generateEmailTemplate(data: QuoteFormData): string {
 //   return `
 //     <!DOCTYPE html>
@@ -176,7 +174,11 @@
           
 //           <div class="section">
 //             <p>Please respond to this client within 24 hours to discuss their project requirements.</p>
-//             <p><a href="mailto:${data.email}" style="color: #b91c1c; text-decoration: none; font-weight: bold;">Reply to ${data.firstName}</a></p>
+//             <p><a href="mailto:${
+//               data.email
+//             }" style="color: #b91c1c; text-decoration: none; font-weight: bold;">Reply to ${
+//     data.firstName
+//   }</a></p>
 //           </div>
 //         </div>
         
@@ -189,5 +191,3 @@
 //     </html>
 //   `;
 // }
-// */
-
