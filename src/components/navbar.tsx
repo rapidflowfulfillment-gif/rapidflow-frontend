@@ -25,8 +25,8 @@ export default function Navbar() {
 
   const { data: clientPortalData } = useGetClientPortalQuery({});
   const portal = clientPortalData?.data?.[0];
+  // console.log(portal)
   // console.log("Client Portal Data:", portal);
-  
 
   const handleDesktopMouseEnter = () => setIsDesktopDropdownOpen(true);
   const handleDesktopMouseLeave = () => setIsDesktopDropdownOpen(false);
@@ -34,7 +34,7 @@ export default function Navbar() {
   return (
     <>
       {/* Navbar with Koro Background */}
-      <nav className="bg-white fixed top-0 left-0 right-0 z-50 px-6 py-2 transition-all duration-300 overflow-hidden bg-opacity-30">
+      <nav className="bg-white fixed top-0 left-0 right-0 z-50 px-6 py-2 transition-all duration-300 overflow-hidden md:bg-opacity-30">
         {/* Koro Background Elements */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {/* Animated geometric shapes */}
@@ -192,7 +192,12 @@ export default function Navbar() {
             {/* Right: Buttons */}
             <div className="hidden md:flex items-center space-x-4">
               <a
-                href={portal?.link || "https://rapidflowfulfillment.com"}
+                href={
+                  portal?.link
+                    ? portal?.link
+                    : "https://rapidflowfulfillment.com"
+                }
+                // href="https://rapidflowfulfillment.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-gray-100/80 hover:bg-gray-200/80 text-gray-900 hover:text-red-600 font-bold px-6 py-2 rounded-lg transition-all duration-300 border border-gray-300/50 hover:border-red-400/50 shadow-lg hover:shadow-xl hover:scale-105 backdrop-blur-sm"
@@ -226,11 +231,11 @@ export default function Navbar() {
 
           {/* Mobile Dropdown Menu */}
           {isMobileMenuOpen && (
-            <div className="md:hidden mt-6 pt-6 border-t border-gray-300/50 animate-in fade-in-0 slide-in-from-top-2 duration-300">
+            <div className="md:hidden mt-6 pt-6 border-t border-gray-300/50 animate-in fade-in-0 slide-in-from-top-2 duration-300 bg-white">
               <div className="flex flex-col space-y-4">
                 <Link
                   href="/"
-                  className="text-gray-900 hover:text-red-600 font-medium transition-all duration-300 p-3 rounded-lg hover:bg-white/20"
+                  className="text-gray-900 hover:text-red-600 font-bold transition-all duration-300 p-3 rounded-lg hover:bg-white/20"
                 >
                   Home
                 </Link>
@@ -240,7 +245,7 @@ export default function Navbar() {
                   onOpenChange={setIsMobileDropdownOpen}
                 >
                   <DropdownMenuTrigger asChild>
-                    <button className="flex items-center border-none justify-between text-gray-900 hover:text-red-600 font-medium transition-all duration-300 w-full text-left p-3 rounded-lg hover:bg-white/20">
+                    <button className="flex items-center border-none justify-between text-gray-900 hover:text-red-600 font-bold transition-all duration-300 w-full text-left p-3 rounded-lg hover:bg-white/20">
                       <Link href="/about">About</Link>
                       <ChevronDown
                         className={`w-4 h-4 transition-transform duration-300 ${
@@ -282,39 +287,45 @@ export default function Navbar() {
 
                 <Link
                   href="/testimonial"
-                  className="text-gray-900 hover:text-red-600 font-medium transition-all duration-300 p-3 rounded-lg hover:bg-white/20"
+                  className="text-gray-900 hover:text-red-600 font-bold transition-all duration-300 p-3 rounded-lg hover:bg-white/20"
                 >
                   Testimonials
                 </Link>
                 <Link
                   href="/faq"
-                  className="text-gray-900 hover:text-red-600 font-medium transition-all duration-300 p-3 rounded-lg hover:bg-white/20"
+                  className="text-gray-900 hover:text-red-600 font-bold transition-all duration-300 p-3 rounded-lg hover:bg-white/20"
                 >
                   FAQ
                 </Link>
 
-                <div className="pt-4 border-t border-gray-300/50 space-y-3">
+                <div className="py-4 border-t border-gray-300/50 space-y-3">
                   <a
-                    href="https://rapidflowfulfillment.com"
+                    href={
+                      portal?.link
+                        ? portal?.link
+                        : "https://rapidflowfulfillment.com"
+                    }
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block text-gray-900 hover:text-red-600 font-medium transition-all duration-300 p-3 rounded-lg hover:bg-white/20"
+                    className="block text-gray-900 hover:text-red-600 font-bold transition-all duration-300 p-3 rounded-lg hover:bg-white/20"
                   >
                     Client portal
                   </a>
 
-                  <Button
-                    onClick={() => {
-                      setIsModalOpen(true);
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold px-6 py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-red-500/25 border border-red-400/50 relative overflow-hidden group"
-                  >
-                    <span className="relative z-10 flex items-center justify-center gap-2">
-                      Get in touch
-                    </span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-red-400 to-red-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </Button>
+                  <div className="mx-5">
+                    <Button
+                      onClick={() => {
+                        setIsModalOpen(true);
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold  px-6 py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-red-500/25 border border-red-400/50 relative overflow-hidden group"
+                    >
+                      <span className="relative z-10 flex items-center justify-center gap-2">
+                        Get in touch
+                      </span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-red-400 to-red-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
