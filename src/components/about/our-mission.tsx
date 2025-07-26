@@ -29,7 +29,10 @@ export default function OurMissionSection() {
   }, []);
 
   return (
-    <section className="bg-black py-10 px-6 relative overflow-hidden">
+    <section
+      id="our-mission"
+      className="bg-black py-10 px-6 relative overflow-hidden"
+    >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div
@@ -80,7 +83,6 @@ export default function OurMissionSection() {
           </div>
 
           <div
-            id="our-mission"
             className={`transition-all duration-1000 delay-300 transform ${
               isVisible
                 ? "translate-x-0 opacity-100"

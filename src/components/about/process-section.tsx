@@ -66,7 +66,10 @@ export default function ProcessSection() {
   };
 
   return (
-    <section className="bg-gradient-to-br from-gray-50 via-white to-gray-100 py-20 px-6 relative overflow-hidden">
+    <section
+      id="our-process"
+      className="bg-gradient-to-br from-gray-50 via-white to-gray-100 py-20 px-6 relative overflow-hidden"
+    >
       {/* Animated Background Image */}
       <div className="absolute inset-0 opacity-5">
         <div
@@ -174,7 +177,7 @@ export default function ProcessSection() {
           </div>
 
           {/* Right Side - Step Details */}
-          <div id="our-process" className="space-y-6">
+          <div className="space-y-6">
             {steps.map((step) => {
               const status = getStepStatus(step.id);
               return (
