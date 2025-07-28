@@ -10,8 +10,7 @@ const contactApi = baseApi.injectEndpoints({
         method: "GET",
       }),
       providesTags: ["Contact"],
-    })
-   
+    }),
   }),
 });
 

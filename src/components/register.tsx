@@ -217,7 +217,7 @@ export default function Register() {
                       </span>
                     </h1>
 
-                    <p className="md:text-2xl text-xl text-gray-300 leading-relaxed font-light max-w-3xl px-5">
+                    <p className="md:text-2xl text-xl text-gray-300 leading-relaxed font-light max-w-3xl">
                       {item?.description}
                     </p>
                   </div>

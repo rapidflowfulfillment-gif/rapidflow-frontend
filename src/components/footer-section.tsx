@@ -226,10 +226,11 @@ export default function Footer() {
               {contactData?.email && (
                 <li>
                   <a
-                    href={`mailto:${contactData.email}?subject=Support&body=Hello`}
+                    href={`https://mail.google.com/mail/?view=cm&fs=1&to=${contactData.email}&su=Support&body=Hello`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-red-500 hover:text-red-600 transition-colors flex items-center group"
                   >
-                    {/* <span className="w-1.5 h-1.5 bg-red-400 rounded-full mr-3 group-hover:bg-red-600 transition-colors"></span> */}
                     {contactData.email}
                   </a>
                 </li>

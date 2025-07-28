@@ -1,4 +1,5 @@
 "use client";
+import { useGetContactQuery } from "@/redux/api/contactApi";
 import { X, Mail, AlertCircle } from "lucide-react";
 
 interface ContactModalProps {
@@ -6,7 +7,15 @@ interface ContactModalProps {
   onClose: () => void;
 }
 
+interface Contact {
+  email: string;
+}
+
 export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
+  const { data } = useGetContactQuery();
+  // console.log(data?.data?.[0]?.email);
+  const contact = data?.data?.[0] as Contact;
+
   if (!isOpen) return null;
 
   return (
@@ -58,11 +67,11 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
               <div className="bg-white text-[9px] md:text-[16px] rounded-lg md:p-4 p-2 border border-red-200">
                 <a
-                  href="mailto:support@rapidflowfulfillment.com"
+                  href={`mailto:${contact?.email}`}
                   className="inline-flex items-center space-x-2 text-red-600 hover:text-red-700 font-semibold transition-colors duration-200 group"
                 >
                   <Mail className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" />
-                  <span>support@rapidflowfulfillment.com</span>
+                  <span>{contact?.email}</span>
                 </a>
               </div>
 
@@ -76,7 +85,9 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
           {/* Action buttons */}
           <div className="flex flex-col sm:flex-row gap-3 mt-6">
             <a
-              href="mailto:rapidflowfulfillment@gmail.com"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=rapidflowfulfillment@gmail.com&su=Support&body=Hello"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex-1 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 text-center shadow-lg hover:shadow-red-500/25 group"
             >
               <span className="flex items-center justify-center space-x-2">
@@ -84,6 +95,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 <span>Send Email</span>
               </span>
             </a>
+
             <button
               onClick={onClose}
               className="flex-1 bg-white hover:bg-gray-50 text-black font-semibold py-3 px-6 rounded-lg border-2 border-gray-200 hover:border-gray-300 transition-all duration-200"
