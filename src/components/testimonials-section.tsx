@@ -429,6 +429,7 @@ export default function Testimonials() {
                 {testimonials[currentSlide]?.hasVideo ? (
                   <div className="relative w-full h-80 bg-black rounded-3xl overflow-hidden border border-white/10">
                     <video
+                      key={testimonials[currentSlide].id} // ✅ Force re-render on slide change
                       ref={(el) => {
                         if (el)
                           videoRefs.current[testimonials[currentSlide].id] = el;
@@ -444,6 +445,7 @@ export default function Testimonials() {
                       />
                       Your browser does not support the video tag.
                     </video>
+
                     {/* Video Controls Overlay */}
                     <div className="absolute inset-0 bg-black/20 flex items-center justify-center group hover:bg-black/40 transition-all">
                       <button
