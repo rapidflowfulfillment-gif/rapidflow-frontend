@@ -49,16 +49,15 @@ export default function Testimonials() {
   } = useGetTestimonialsQuery(undefined);
 
   // Process API data and add hasVideo flag
-  const testimonials =
-    testimonialApiData?.data?.map((testimonial: any, index: any) => ({
-      id: index + 1, // Generate unique ID
-      text: testimonial.text,
-      name: testimonial.name,
-      rating: testimonial.rating,
-      videoUrl: testimonial.videoUrl,
-      hasVideo: !!testimonial.videoUrl, // Add hasVideo flag based on videoUrl existence
-    })) || [];
-
+ const testimonials =
+  testimonialApiData?.data?.map((testimonial: any, index: any) => ({
+    id: index + 1,
+    text: testimonial.text,
+    name: testimonial.name,
+    rating: testimonial.rating,
+    videoUrl: testimonial.videoUrl?.replace(/^http:\/\//, "https://"), // ✅ fix here
+    hasVideo: !!testimonial.videoUrl,
+  })) || [];
   // Initialize muted states based on testimonials length
   useEffect(() => {
     if (testimonials.length > 0) {
