@@ -9,8 +9,6 @@ const HomePage = () => {
       <Navbar />
       <Register />
       <Features />
-      {/* <Testimonials /> */}
-      {/* <CtaSection /> */}
       <Footer />
     </div>
   );
