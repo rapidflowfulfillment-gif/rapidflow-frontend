@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type React from "react";
+import React, { memo } from "react";
 import { FiBox } from "react-icons/fi";
 import { TbTruckDelivery } from "react-icons/tb";
 import {
   CheckCircle,
   Users,
-  Loader2,
+  // Loader2,
   LucideCalendarCheck,
 } from "lucide-react";
 
@@ -15,21 +15,107 @@ interface LeftContentProps {
   data: any;
 }
 
-export default function LeftContent({ isLoading, isSuccess, data }: LeftContentProps) {
-  if (isLoading) {
-    return (
-      <div className="space-y-8">
-        <div className="flex items-center justify-center min-h-[400px]">
-          <div className="text-center">
-            <Loader2 className="w-12 h-12 text-red-400 animate-spin mx-auto mb-4" />
-          </div>
+// Skeleton Loader component for left side content
+const LeftContentSkeleton = () => (
+  <div className="space-y-12 animate-pulse max-w-4xl mx-auto">
+    {/* Mimic Title */}
+    <div className="space-y-4">
+      <div className="h-[75px] w-96 bg-gray-700 rounded-md" />
+      <div className="h-10 w-80 bg-red-600 rounded-md" />
+    </div>
+
+    {/* Mimic Description */}
+    <div className="space-y-3 max-w-3xl">
+      <div className="h-5 w-full bg-gray-700 rounded-md" />
+      <div className="h-5 w-full bg-gray-700 rounded-md" />
+      <div className="h-5 w-full bg-gray-700 rounded-md" />
+      <div className="h-5 w-5/6 bg-gray-700 rounded-md" />
+    </div>
+
+    {/* Mimic Stats Grid */}
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      {[...Array(4)].map((_, i) => (
+        <div
+          key={i}
+          className="bg-gradient-to-br from-gray-700/60 to-gray-700/40 rounded-2xl p-7 border border-gray-600"
+        >
+          <div className="h-9 w-10 bg-gray-600 rounded mb-3 mx-auto" />
+          <div className="h-9 bg-gray-600 rounded mb-2 w-3/5 mx-auto" />
+          <div className="h-5 bg-gray-600 rounded w-3/4 mx-auto" />
         </div>
+      ))}
+    </div>
+
+    {/* Mimic Call to Action */}
+    <div className="bg-gradient-to-r from-gray-700/50 to-gray-700/30 rounded-2xl p-8 border border-gray-600 text-center space-y-4">
+      <div className="h-6 w-4/5 bg-gray-600 rounded mx-auto" />
+      <div className="flex justify-center items-center gap-4 text-sm text-gray-400">
+        {[...Array(3)].map((_, i) => (
+          <div key={i} className="flex items-center gap-2">
+            <div className="h-4 w-4 bg-gray-600 rounded-full" />
+            <div className="h-4 w-20 bg-gray-600 rounded" />
+          </div>
+        ))}
       </div>
-    );
+    </div>
+  </div>
+);
+
+// Memoized stat card component
+const StatCard = memo(
+  ({
+    icon: Icon,
+    value,
+    title,
+  }: {
+    icon: React.ComponentType<any>;
+    value: string | number;
+    title: string;
+  }) => (
+    <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-red-400/50 transition-all duration-500 hover:scale-105 group">
+      <div className="text-center">
+        <Icon className="w-8 h-8 text-red-400 mx-auto mb-3 group-hover:scale-110 transition-transform" />
+        <div className="text-3xl font-bold text-white mb-1">{value}</div>
+        <div className="text-sm text-gray-300">{title}</div>
+      </div>
+    </div>
+  )
+);
+
+StatCard.displayName = "StatCard";
+
+// Memoized trust indicator component
+const TrustIndicator = memo(({ text }: { text: string }) => (
+  <div className="flex items-center gap-2">
+    <CheckCircle className="w-4 h-4 text-green-400" />
+    <span>{text}</span>
+  </div>
+));
+
+TrustIndicator.displayName = "TrustIndicator";
+
+function LeftContent({ isLoading, isSuccess, data }: LeftContentProps) {
+  if (isLoading) {
+    return <LeftContentSkeleton />;
   }
 
   if (!isSuccess || !data?.data) {
-    return null;
+    return (
+      <div className="space-y-8">
+        <div className="text-center lg:text-left space-y-8">
+          <h1 className="text-5xl lg:text-7xl font-black text-white leading-tight drop-shadow-2xl">
+            <span className="decoration-red-400 decoration-4">Get Your</span>
+            <br />
+            <span className="text-4xl lg:text-5xl text-red-400 decoration-red-400 decoration-4">
+              Quote
+            </span>
+          </h1>
+          <p className="md:text-2xl text-xl text-gray-300 leading-relaxed font-light max-w-3xl">
+            Contact us for a customized solution for your business needs.
+          </p>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -40,11 +126,11 @@ export default function LeftContent({ isLoading, isSuccess, data }: LeftContentP
           <div className="text-center lg:text-left space-y-8">
             <h1 className="text-5xl lg:text-7xl font-black text-white leading-tight drop-shadow-2xl">
               <span className="decoration-red-400 decoration-4">
-                {item?.title.split(" ")[0]} {item?.title.split(" ")[1]}
+                {item?.title?.split(" ")[0]} {item?.title?.split(" ")[1]}
               </span>
               <br />
               <span className="text-4xl lg:text-5xl text-red-400 decoration-red-400 decoration-4">
-                {item?.title.split(" ")[2]}
+                {item?.title?.split(" ")[2]}
               </span>
             </h1>
 
@@ -55,53 +141,26 @@ export default function LeftContent({ isLoading, isSuccess, data }: LeftContentP
 
           {/* Stats Grid */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-red-400/50 transition-all duration-500 hover:scale-105 group">
-              <div className="text-center">
-                <FiBox className="w-8 h-8 text-red-400 mx-auto mb-3 group-hover:scale-110 transition-transform" />
-                <div className="text-3xl font-bold text-white mb-1">
-                  {item?.units_shipped}
-                </div>
-                <div className="text-sm text-gray-300">
-                  {item?.units_shipped_title}
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-red-400/50 transition-all duration-500 hover:scale-105 group">
-              <div className="text-center">
-                <TbTruckDelivery className="w-8 h-8 text-red-400 mx-auto mb-3 group-hover:scale-110 transition-transform" />
-                <div className="text-3xl font-bold text-white mb-1">
-                  {item?.years}
-                </div>
-                <div className="text-sm text-gray-300">
-                  {item?.years_title}
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-red-400/50 transition-all duration-500 hover:scale-105 group">
-              <div className="text-center">
-                <Users className="w-8 h-8 text-red-400 mx-auto mb-3 group-hover:scale-110 transition-transform" />
-                <div className="text-3xl font-bold text-white mb-1">
-                  {item?.client_satisfied}
-                </div>
-                <div className="text-sm text-gray-300">
-                  {item?.client_satisfied_title}
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-red-400/50 transition-all duration-500 hover:scale-105 group">
-              <div className="text-center">
-                <LucideCalendarCheck className="w-8 h-8 text-red-400 mx-auto mb-3 group-hover:scale-110 transition-transform" />
-                <div className="text-3xl font-bold text-white mb-1">
-                  {item?.week_day}
-                </div>
-                <div className="text-sm text-gray-300">
-                  {item?.week_day_title}
-                </div>
-              </div>
-            </div>
+            <StatCard
+              icon={FiBox}
+              value={item?.units_shipped}
+              title={item?.units_shipped_title}
+            />
+            <StatCard
+              icon={TbTruckDelivery}
+              value={item?.years}
+              title={item?.years_title}
+            />
+            <StatCard
+              icon={Users}
+              value={item?.client_satisfied}
+              title={item?.client_satisfied_title}
+            />
+            <StatCard
+              icon={LucideCalendarCheck}
+              value={item?.week_day}
+              title={item?.week_day_title}
+            />
           </div>
 
           {/* Call to Action */}
@@ -110,18 +169,9 @@ export default function LeftContent({ isLoading, isSuccess, data }: LeftContentP
               {item?.para}
             </p>
             <div className="flex justify-center items-center gap-4 text-sm text-gray-400">
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-green-400" />
-                <span>{item?.support}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-green-400" />
-                <span>{item?.solutions}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-green-400" />
-                <span>{item?.team}</span>
-              </div>
+              <TrustIndicator text={item?.support} />
+              <TrustIndicator text={item?.solutions} />
+              <TrustIndicator text={item?.team} />
             </div>
           </div>
         </div>
@@ -129,3 +179,5 @@ export default function LeftContent({ isLoading, isSuccess, data }: LeftContentP
     </div>
   );
 }
+
+export default memo(LeftContent);
