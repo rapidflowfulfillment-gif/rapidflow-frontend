@@ -31,6 +31,12 @@ import Header from "./CardHeader";
 
 export default function RightForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<any>({
+    serviceType: "",
+    budget: "",
+    customService: "",
+    website: "",
+  });
   const [formData, setFormData] = useState<any>({
     firstName: "",
     lastName: "",
@@ -43,6 +49,7 @@ export default function RightForm() {
     budget: "",
   });
 
+  // redux api
   const [sendQuote] = useSendQuoteMutation();
 
   const handleInputChange = (field: string, value: string) => {
@@ -50,10 +57,64 @@ export default function RightForm() {
       ...prev,
       [field]: value,
     }));
+
+    // Clear error when user selects/types something
+    if (errors[field]) {
+      setErrors((prev: any) => ({
+        ...prev,
+        [field]: "",
+      }));
+    }
+
+    if (field === "website" && value.trim()) {
+      const urlPattern =
+        /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
+      const isValidUrl = urlPattern.test(value.trim());
+
+      if (!isValidUrl) {
+        setErrors((prev: any) => ({
+          ...prev,
+          website: "Please enter a valid URL https://example.com",
+        }));
+      }
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors: any = {};
+    let hasErrors = false;
+
+    // Validate Service Type
+    if (!formData.serviceType) {
+      newErrors.serviceType = "Please select what service you need";
+      hasErrors = true;
+    }
+
+    // Validate Budget
+    if (!formData.budget) {
+      newErrors.budget = "Please select your monthly order volume";
+      hasErrors = true;
+    }
+
+    // Validate Custom Service
+    if (formData.serviceType === "custom" && !formData.customService.trim()) {
+      newErrors.customService =
+        "Please describe your custom service requirements";
+      hasErrors = true;
+    }
+
+    setErrors(newErrors);
+    return !hasErrors;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validate form
+    if (!validateForm()) {
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -84,6 +145,7 @@ export default function RightForm() {
           customService: "",
           budget: "",
         });
+        setErrors({});
       }
     } catch (error: any) {
       console.error("Error submitting form:", error);
@@ -132,8 +194,7 @@ export default function RightForm() {
                       handleInputChange("firstName", e.target.value)
                     }
                     required
-                    disabled={isSubmitting}
-                    className="h-12 border-2 border-gray-200 focus:border-red-400 focus:ring-0 bg-gray-50 text-gray-900 placeholder:text-gray-400 rounded-xl transition-all hover:border-gray-300 focus:bg-white"
+                    className="h-12  border-gray-200 bg-gray-50 text-gray-900 placeholder:text-gray-400 rounded-xl transition-all  focus:bg-white"
                   />
                 </div>
                 <div className="space-y-2">
@@ -152,7 +213,7 @@ export default function RightForm() {
                     }
                     required
                     disabled={isSubmitting}
-                    className="h-12 border-2 border-gray-200 focus:border-red-400 focus:ring-0 bg-gray-50 text-gray-900 placeholder:text-gray-400 rounded-xl transition-all hover:border-gray-300 focus:bg-white"
+                    className="h-12 border-gray-200 bg-gray-50 text-gray-900 placeholder:text-gray-400 rounded-xl transition-all focus:bg-white"
                   />
                 </div>
               </div>
@@ -174,7 +235,7 @@ export default function RightForm() {
                     onChange={(e) => handleInputChange("email", e.target.value)}
                     required
                     disabled={isSubmitting}
-                    className="h-12 border-2 border-gray-200 focus:border-red-400 focus:ring-0 bg-gray-50 text-gray-900 placeholder:text-gray-400 rounded-xl transition-all hover:border-gray-300 focus:bg-white"
+                    className="h-12 border-gray-200 bg-gray-50 text-gray-900 placeholder:text-gray-400 rounded-xl transition-all focus:bg-white"
                   />
                 </div>
                 <div className="space-y-2">
@@ -187,12 +248,23 @@ export default function RightForm() {
                   <Input
                     id="phone"
                     type="tel"
-                    placeholder="(555) 123-4567"
+                    placeholder="+8801994-658709"
                     value={formData.phone}
                     onChange={(e) => handleInputChange("phone", e.target.value)}
                     required
+                    pattern="^\+?[0-9]{1,4}[0-9\-]{7,15}$"
+                    onInvalid={(e) =>
+                      (e.target as HTMLInputElement).setCustomValidity(
+                        "Please enter a valid number"
+                      )
+                    }
+                    onInput={(e) =>
+                      (e.target as HTMLInputElement).setCustomValidity("")
+                    }
                     disabled={isSubmitting}
-                    className="h-12 border-2 border-gray-200 focus:border-red-400 focus:ring-0 bg-gray-50 text-gray-900 placeholder:text-gray-400 rounded-xl transition-all hover:border-gray-300 focus:bg-white"
+                    className="h-12 border-gray-200  
+     bg-gray-50 text-gray-900 placeholder:text-gray-400 rounded-xl 
+     transition-all focus:bg-white"
                   />
                 </div>
               </div>
@@ -215,7 +287,7 @@ export default function RightForm() {
                     }
                     required
                     disabled={isSubmitting}
-                    className="h-12 border-2 border-gray-200 focus:border-red-400 focus:ring-0 bg-gray-50 text-gray-900 placeholder:text-gray-400 rounded-xl transition-all hover:border-gray-300 focus:bg-white"
+                    className="h-12 border-gray-200 bg-gray-50 text-gray-900 placeholder:text-gray-400 rounded-xl transition-all focus:bg-white"
                   />
                 </div>
                 <div className="space-y-2">
@@ -234,8 +306,15 @@ export default function RightForm() {
                       handleInputChange("website", e.target.value)
                     }
                     disabled={isSubmitting}
-                    className="h-12 border-2 border-gray-200 focus:border-red-400 focus:ring-0 bg-gray-50 text-gray-900 placeholder:text-gray-400 rounded-xl transition-all hover:border-gray-300 focus:bg-white"
+                    className={`h-12 ${
+                      errors.website ? "border-gray-200" : "border-gray-200"
+                    }  bg-gray-50 text-gray-900 placeholder:text-gray-400 rounded-xl transition-all  focus:bg-white`}
                   />
+                  {errors.website && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.website}
+                    </p>
+                  )}
                 </div>
               </div>
 
@@ -255,7 +334,11 @@ export default function RightForm() {
                   }
                   disabled={isSubmitting}
                 >
-                  <SelectTrigger className="h-12 border-2 border-gray-200 focus:border-red-400 focus:ring-0 bg-gray-50 text-gray-900 rounded-xl transition-all hover:border-gray-300 focus:bg-white">
+                  <SelectTrigger
+                    className={`h-12 ${
+                      errors.serviceType ? "border-gray-200" : "border-gray-200"
+                    } bg-gray-50 text-gray-900 rounded-xl transition-all focus:bg-white`}
+                  >
                     <SelectValue placeholder="Select the service you need" />
                   </SelectTrigger>
                   <SelectContent className="bg-white border-gray-200 shadow-xl rounded-xl">
@@ -371,19 +454,37 @@ export default function RightForm() {
                   </SelectContent>
                 </Select>
 
+                {/* Error message for service type */}
+                {errors.serviceType && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.serviceType}
+                  </p>
+                )}
+
                 {/* Custom Input */}
                 {formData.serviceType === "custom" && (
                   <Input
+                    name="customService"
                     type="text"
                     placeholder="Please describe your custom service"
                     value={formData.customService}
-                    onChange={(e) =>
-                      handleInputChange("customService", e.target.value)
-                    }
-                    className="h-12 mt-3 border-2 border-gray-200 focus:border-red-400 focus:ring-0 bg-gray-50 text-gray-900 placeholder:text-gray-400 rounded-xl transition-all hover:border-gray-300 focus:bg-white"
+                    onChange={(e) => {
+                      handleInputChange("customService", e.target.value);
+                    }}
+                    className={`h-12 mt-3 border-2 ${
+                      errors.customService
+                        ? "border-red-500"
+                        : "border-gray-200"
+                    } focus:border-red-400 focus:ring-0 bg-gray-50 text-gray-900 placeholder:text-gray-400 rounded-xl transition-all hover:border-gray-300 focus:bg-white`}
                     required
                     disabled={isSubmitting}
                   />
+                )}
+
+                {errors.customService && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.customService}
+                  </p>
                 )}
               </div>
 
@@ -400,7 +501,11 @@ export default function RightForm() {
                   onValueChange={(value) => handleInputChange("budget", value)}
                   disabled={isSubmitting}
                 >
-                  <SelectTrigger className="h-12 border-2 border-gray-200 focus:border-red-400 focus:ring-0 bg-gray-50 text-gray-900 rounded-xl transition-all hover:border-gray-300 focus:bg-white">
+                  <SelectTrigger
+                    className={`h-12 ${
+                      errors.budget ? "border-gray-200" : "border-gray-200"
+                    } bg-gray-50 text-gray-900 rounded-xl transition-all focus:bg-white`}
+                  >
                     <SelectValue placeholder="How many orders do you process monthly?" />
                   </SelectTrigger>
                   <SelectContent className="bg-white border-gray-200 shadow-xl rounded-xl">
@@ -436,6 +541,11 @@ export default function RightForm() {
                     </SelectItem>
                   </SelectContent>
                 </Select>
+
+                {/* Error message for budget */}
+                {errors.budget && (
+                  <p className="text-red-500 text-sm mt-1">{errors.budget}</p>
+                )}
               </div>
 
               {/* Submit Button */}

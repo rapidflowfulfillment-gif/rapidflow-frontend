@@ -62,6 +62,13 @@ export default function Testimonials() {
       videoUrl: testimonial.videoUrl?.replace(/^http:\/\//, "https://"), // ✅ fix here
       hasVideo: !!testimonial.videoUrl,
     })) || [];
+
+  const [showFull, setShowFull] = useState(false);
+
+  const text = testimonials[currentSlide]?.text || "";
+  const isLong = text.length > 200;
+  const displayText = showFull ? text : text.slice(0, 200);
+
   // Initialize muted states based on testimonials length
   useEffect(() => {
     if (testimonials.length > 0) {
@@ -410,8 +417,17 @@ export default function Testimonials() {
                     )}
                   </div>
                 </div>
-                <blockquote className="text-2xl lg:text-3xl text-white leading-relaxed font-light">
-                  &quot;{testimonials[currentSlide]?.text}&quot;
+                <blockquote className="text-xl lg:text-2xl text-white leading-relaxed font-light">
+                  &quot;{displayText}
+                  {isLong && !showFull && "..."}&quot;
+                  {isLong && (
+                    <button
+                      onClick={() => setShowFull(!showFull)}
+                      className="ml-2 text-red-400 underline text-sm"
+                    >
+                      {showFull ? "Show Less" : "Read More"}
+                    </button>
+                  )}
                 </blockquote>
                 <div className="flex items-center gap-6">
                   <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center">
@@ -674,7 +690,7 @@ export default function Testimonials() {
 
         {/* Call to Action */}
         <div className="text-center mt-20">
-          <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl p-12 border border-white/20">
+          <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl md:p-12 px-2 py-6 border border-white/20">
             <h3 className="text-3xl font-bold text-white mb-4">
               Ready to join our success stories?
             </h3>
@@ -684,7 +700,7 @@ export default function Testimonials() {
             </p>
             <button
               onClick={() => setIsModalOpen(true)}
-              className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-xl hover:scale-105"
+              className="bg-gradient-to-r from-red-500 to-red-600 text-xs md:text-xl hover:from-red-600 hover:to-red-700 text-white font-semibold px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-xl hover:scale-105"
             >
               Get Started Today
             </button>

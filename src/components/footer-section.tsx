@@ -142,76 +142,57 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           {/* About Section */}
           <div className="space-y-4">
-            <Link href="about">
-              <h3 className="text-red-500 font-bold text-lg mb-4 border-b-2 border-red-100 pb-2">
+            <Link href="about" className="inline-block">
+              <h3 className="text-red-500 font-bold text-lg border-red-100 pb-2">
                 About
               </h3>
             </Link>
+
             <nav>
               <ul className="space-y-3">
-                <li>
-                  <Link
-                    href="/about#our-process"
-                    className="text-gray-700 hover:text-red-500 transition-all duration-300 font-medium flex items-center group"
-                  >
-                    {/* <span className="w-1.5 h-1.5 bg-red-400 rounded-full mr-3 group-hover:bg-red-500 transition-colors"></span> */}
-                    Our Process
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/about#our-services"
-                    className="text-gray-700 hover:text-red-500 transition-all duration-300 font-medium flex items-center group"
-                  >
-                    {/* <span className="w-1.5 h-1.5 bg-red-400 rounded-full mr-3 group-hover:bg-red-500 transition-colors"></span> */}
-                    Our Services
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/about#our-mission"
-                    className="text-gray-700 hover:text-red-500 transition-all duration-300 font-medium flex items-center group"
-                  >
-                    {/* <span className="w-1.5 h-1.5 bg-red-400 rounded-full mr-3 group-hover:bg-red-500 transition-colors"></span> */}
-                    Our Mission
-                  </Link>
-                </li>
+                {[
+                  { href: "/about#our-process", label: "Our Process" },
+                  { href: "/about#our-services", label: "Our Services" },
+                  { href: "/about#our-mission", label: "Our Mission" },
+                ].map((item, index) => (
+                  <li key={index}>
+                    <Link href={item.href}>
+                      <span className="cursor-pointer text-gray-700 hover:text-red-500 transition-colors duration-300 font-medium">
+                        {item.label}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </nav>
           </div>
 
           {/* Information Section */}
           <div className="space-y-4">
-            <h3 className="text-red-500 font-bold text-lg mb-4 border-b-2 border-red-100 pb-2">
+            <h3 className="text-red-500 font-bold text-lg mb-4 border-red-100 pb-2">
               Information
             </h3>
             <nav>
               <ul className="space-y-3">
-                <li>
-                  <Link
-                    href="/faq"
-                    className="text-gray-700 hover:text-red-500 transition-all duration-300 font-medium flex items-center group"
-                  >
-                    {/* <span className="w-1.5 h-1.5 bg-red-400 rounded-full mr-3 group-hover:bg-red-500 transition-colors"></span> */}
-                    FAQ
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/testimonial"
-                    className="text-gray-700 hover:text-red-500 transition-all duration-300 font-medium flex items-center group"
-                  >
-                    {/* <span className="w-1.5 h-1.5 bg-red-400 rounded-full mr-3 group-hover:bg-red-500 transition-colors"></span> */}
-                    Testimonials
-                  </Link>
-                </li>
+                {[
+                  { href: "/faq", label: "FAQ" },
+                  { href: "/testimonial", label: "Testimonials" },
+                ].map((item, index) => (
+                  <li key={index}>
+                    <Link href={item.href}>
+                      <span className="cursor-pointer text-gray-700 hover:text-red-500 transition-colors duration-300 font-medium">
+                        {item.label}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </nav>
           </div>
 
           {/* Contact Section */}
           <div className="space-y-4">
-            <h3 className="text-red-500 font-bold text-lg mb-4 border-b-2 border-red-100 pb-2">
+            <h3 className="text-red-500 font-bold text-lg mb-4 border-red-100 pb-2">
               Contact Us
             </h3>
             <ul className="space-y-3">
@@ -229,7 +210,7 @@ export default function Footer() {
                     href={`https://mail.google.com/mail/?view=cm&fs=1&to=${contactData.email}&su=Support&body=Hello`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-red-500 hover:text-red-600 transition-colors flex items-center group"
+                    className="inline-block text-red-500 hover:text-red-600 transition-colors group"
                   >
                     {contactData.email}
                   </a>
@@ -240,7 +221,7 @@ export default function Footer() {
                   <a
                     href={`tel:${contactData.phone.replace(/\D/g, "")}`}
                     onClick={handlePhoneClick}
-                    className="text-red-500 hover:text-red-600 transition-colors flex items-center group"
+                    className="inline-block text-red-500 hover:text-red-600 transition-colors group"
                   >
                     {/* <span className="w-1.5 h-1.5 bg-red-400 rounded-full mr-3 group-hover:bg-red-600 transition-colors"></span> */}
                     {contactData.phone}
