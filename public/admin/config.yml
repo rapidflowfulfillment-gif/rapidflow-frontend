@@ -2,6 +2,8 @@ backend:
   name: github
   repo: MattB757/rapidflow-frontend
   branch: main
+  base_url: https://rapidflowfulfillment.com
+  auth_endpoint: /api/auth
 
 media_folder: public/uploads
 public_folder: /uploads
