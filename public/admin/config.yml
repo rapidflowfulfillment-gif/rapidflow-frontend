@@ -3,16 +3,8 @@ backend:
   repo: MattB757/rapidflow-frontend
   branch: main
 
-media_library:
-  name: s3
-  config:
-    bucket: rapidflow-videos
-    region: auto
-    path: uploads
-    endpoint: https://9e19a44b61c9fb34c0af8b9afc9ab6fb.r2.cloudflarestorage.com
-    public_folder: https://videos.rapidflowfulfillment.com/uploads
-    access_key_id: ${R2_ACCESS_KEY_ID}
-    secret_access_key: ${R2_SECRET_ACCESS_KEY}
+media_folder: public/uploads
+public_folder: /uploads
 
 collections:
   - name: faqs
