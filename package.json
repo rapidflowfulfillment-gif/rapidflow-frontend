@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
+    "dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev --turbopack\"",
+    "build": "tinacms build && next build",
     "start": "next start",
     "export": "next export",
     "lint": "next lint",
@@ -37,12 +37,14 @@
     "sweetalert2": "^11.22.2",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7",
+    "tinacms": "^2.9.5",
     "video-react": "^0.16.0",
     "yup": "^1.4.0"
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.13.13",
-    "@types/node": "^20.19.9",
+    "@tinacms/cli": "^1.12.4",
+    "@types/node": "^20.19.25",
     "@types/react": "^18.3.23",
     "@types/react-dom": "^18.3.7",
     "@types/video-react": "^0.15.8",
